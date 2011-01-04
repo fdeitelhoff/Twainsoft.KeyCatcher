@@ -45,13 +45,12 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
                 OnKeyStroked();
 
                 Console.WriteLine("KeyUp: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
-                                  keyEventArgs.KeyData + "  (" + KeyPressCount + ")  " + keyEventArgs.KeyValue);
+                                  keyEventArgs.KeyData + "  (" + KeyPressCount + ")  " + keyEventArgs.KeyValue + "   " + keyEventArgs.KeyCode);
             }
             else
             {
                 Console.WriteLine("KeyUp currently not handled: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") +
-                                  "\t\t\t" +
-                                  keyEventArgs.KeyData + "  " + keyEventArgs.KeyValue);
+                                  "\t\t\t" + keyEventArgs.KeyData + "  " + keyEventArgs.KeyValue);
             }
         }
 

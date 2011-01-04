@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Twainsoft.KeyCatcher.Core;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 
 namespace Twainsoft.KeyCatcher.GUI
@@ -36,6 +35,35 @@ namespace Twainsoft.KeyCatcher.GUI
         private void KeyboardCatcherOnKeyStroked(object sender, KeyStrokeEventArgs keyStrokeEventArgs)
         {
             keyStrokeCount.Text = string.Format("Current Key Strokes: {0}", keyStrokeEventArgs.KeyStrokes);
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // TODO: I don't exactly know if thats needed. Test it out later.
+            if (notifyIcon != null)
+            {
+                notifyIcon.Visible = false;
+                notifyIcon.Dispose();
+                notifyIcon = null;
+            }
+        }
+
+        private void maximizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
+        }
+
+        private void minimizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon.ShowBalloonTip(500);
+            Hide();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
