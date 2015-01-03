@@ -49,20 +49,12 @@ namespace Twainsoft.KeyCatcher.Core
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
             // Catch all keys that are not handled by the KeyPressed event.
-            if ((keyEventArgs.KeyValue >= 37 && keyEventArgs.KeyValue <= 40)        // Arrows
-                || (keyEventArgs.KeyValue >= 33 && keyEventArgs.KeyValue <= 36)     // PageUp, Next, End, Home
-                || (keyEventArgs.KeyValue >= 44 && keyEventArgs.KeyValue <= 46)     // PrintScreen, Insert, Delete
-                || (keyEventArgs.KeyValue == 19))                                    // Pause
+            if (keyEventArgs.KeyValue >= 37 && keyEventArgs.KeyValue <= 40) // Arrows
             {
                 OnKeyStroked();
 
                 Console.WriteLine("KeyUp: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
-                                  keyEventArgs.KeyData + "  (" + KeyPressCount + ")  " + keyEventArgs.KeyValue);
-            }
-            else
-            {
-                Console.WriteLine("KeyUp currently not handled: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
-                  keyEventArgs.KeyData + "  " + keyEventArgs.KeyValue);
+                                  keyEventArgs.KeyData);
             }
         }
 
