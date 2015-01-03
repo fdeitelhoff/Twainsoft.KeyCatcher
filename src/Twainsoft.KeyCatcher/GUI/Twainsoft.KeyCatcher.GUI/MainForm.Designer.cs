@@ -51,7 +51,7 @@
             this.keyStrokeCount.Name = "keyStrokeCount";
             this.keyStrokeCount.Size = new System.Drawing.Size(113, 13);
             this.keyStrokeCount.TabIndex = 0;
-            this.keyStrokeCount.Text = "Current Key Strokes: --";
+            this.keyStrokeCount.Text = "Current Key Strokes: 0";
             // 
             // MainForm
             // 
@@ -66,6 +66,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Twainsoft KeyCatcher";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
