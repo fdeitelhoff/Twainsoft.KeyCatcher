@@ -39,19 +39,29 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
+            if (StartSession(keyEventArgs))
+            {
+                Console.WriteLine("Session could be started");
+            }
             // Catch all keys that are not handled by the KeyPressed event.
-            if (CheckKeyValueRanges(keyEventArgs))
+            else if (CheckKeyValueRanges(keyEventArgs))
             {
                 OnKeyStroked();
 
                 Console.WriteLine("KeyUp: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
-                                  keyEventArgs.KeyData + "  (" + KeyPressCount + ")  " + keyEventArgs.KeyValue + "   " + keyEventArgs.KeyCode);
+                                  keyEventArgs.KeyData + "  (" + KeyPressCount + ")  " + keyEventArgs.KeyValue + "   " +
+                                  keyEventArgs.KeyCode);
             }
             else
             {
                 Console.WriteLine("KeyUp currently not handled: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") +
                                   "\t\t\t" + keyEventArgs.KeyData + "  " + keyEventArgs.KeyValue);
             }
+        }
+
+        private bool StartSession(KeyEventArgs keyEventArgs)
+        {
+            return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.K;
         }
 
         private bool CheckKeyValueRanges(KeyEventArgs keyEventArgs)
