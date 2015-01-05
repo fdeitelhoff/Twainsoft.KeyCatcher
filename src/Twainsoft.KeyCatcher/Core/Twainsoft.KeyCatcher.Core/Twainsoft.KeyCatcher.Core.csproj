@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KeyboardSession.cs" />
     <Compile Include="Keyboard\KeyboardCatcher.cs" />
     <Compile Include="Keyboard\KeyStrokeEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

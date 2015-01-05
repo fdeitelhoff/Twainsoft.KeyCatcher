@@ -4,11 +4,11 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 {
     public class KeyStrokeEventArgs : EventArgs
     {
-        public long KeyStrokes { get; set; }
+        public KeyboardSession KeyboardSession { get; private set; }
 
-        public KeyStrokeEventArgs(long keyStroke)
+        public KeyStrokeEventArgs(KeyboardSession keyboardSession)
         {
-            KeyStrokes = keyStroke;
+            KeyboardSession = keyboardSession;
         }
     }
 }

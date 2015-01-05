@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
@@ -9,10 +10,17 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
     {
         private KeyboardHookListener KeyboardHookListener { get; set; }
 
-        private long KeyPressCount { get; set; }
+        // TODO: I don't know at this time if it's necessary to save all (previous) sessions.
+        private List<KeyboardSession> KeyboardSessions { get; set; }
+        private KeyboardSession ActiveKeyboardSession { get; set; }
 
         public event KeyStrokeEventHandler KeyStroked;
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
+
+        public bool IsSessionActive
+        {
+            get { return ActiveKeyboardSession != null; }
+        }
 
         public KeyboardCatcher()
         {
@@ -25,37 +33,47 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             KeyboardHookListener.KeyPress += KeyboardHookListenerOnKeyPress;
             KeyboardHookListener.KeyUp += KeyboardHookListenerOnKeyUp;
 
-            KeyPressCount = 0;
+            KeyboardSessions = new List<KeyboardSession>();
         }
 
         private void KeyboardHookListenerOnKeyPress(object sender, KeyPressEventArgs keyPressEventArgs)
         {
-            OnKeyStroked();
+            if (IsSessionActive)
+            {
+                OnKeyStroked();
 
-            // TODO: Maybe prevent some keystrokes here and catch them in the KeyUp handler? Enter or something else? Could be difficult!
-            Console.WriteLine("KeyPress: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
-                                  keyPressEventArgs.KeyChar + "  (" + KeyPressCount + ")");
+                // TODO: Maybe prevent some keystrokes here and catch them in the KeyUp handler? Enter or something else? Could be difficult!
+                Console.WriteLine("KeyPress: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
+                                  keyPressEventArgs.KeyChar + "  (" + ActiveKeyboardSession.KeyPressCount + ")");
+            }
         }
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
+            // If we register the session start key combination, we start a new one.
             if (StartSession(keyEventArgs))
             {
-                Console.WriteLine("Session could be started");
+                var session = new KeyboardSession();
+                ActiveKeyboardSession = session;
+                KeyboardSessions.Add(session);
             }
-            // Catch all keys that are not handled by the KeyPressed event.
-            else if (CheckKeyValueRanges(keyEventArgs))
+            else if (IsSessionActive)
             {
-                OnKeyStroked();
+                // Catch all keys that are not handled by the KeyPressed event.
+                if (CheckKeyValueRanges(keyEventArgs))
+                {
+                    OnKeyStroked();
 
-                Console.WriteLine("KeyUp: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
-                                  keyEventArgs.KeyData + "  (" + KeyPressCount + ")  " + keyEventArgs.KeyValue + "   " +
-                                  keyEventArgs.KeyCode);
-            }
-            else
-            {
-                Console.WriteLine("KeyUp currently not handled: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") +
-                                  "\t\t\t" + keyEventArgs.KeyData + "  " + keyEventArgs.KeyValue);
+                    Console.WriteLine("KeyUp: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") + "\t\t\t" +
+                                      keyEventArgs.KeyData + "  (" + ActiveKeyboardSession.KeyPressCount + ")  " + keyEventArgs.KeyValue +
+                                      "   " +
+                                      keyEventArgs.KeyCode);
+                }
+                else
+                {
+                    Console.WriteLine("KeyUp currently not handled: " + DateTime.Now.ToString("hh: mm:ss.FFFFFFF") +
+                                      "\t\t\t" + keyEventArgs.KeyData + "  " + keyEventArgs.KeyValue);
+                }
             }
         }
 
@@ -81,11 +99,11 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private void OnKeyStroked()
         {
-            KeyPressCount++;
+            ActiveKeyboardSession.KeyPress();
 
             if (KeyStroked != null)
             {
-                KeyStroked(this, new KeyStrokeEventArgs(KeyPressCount));
+                KeyStroked(this, new KeyStrokeEventArgs(ActiveKeyboardSession));
             }
         }
     }
