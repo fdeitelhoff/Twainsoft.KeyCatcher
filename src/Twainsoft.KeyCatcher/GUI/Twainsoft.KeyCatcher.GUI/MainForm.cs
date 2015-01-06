@@ -34,7 +34,10 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void KeyboardCatcherOnKeyStroked(object sender, KeyStrokeEventArgs keyStrokeEventArgs)
         {
-            keyStrokeCount.Text = string.Format("Current Key Strokes: {0}", keyStrokeEventArgs.KeyStrokes);
+            sessionStartDate.Text = string.Format("Session Active Since: {0}",
+                keyStrokeEventArgs.KeyboardSession.StartDate);
+            keyStrokeCount.Text = string.Format("Current Key Strokes: {0}",
+                keyStrokeEventArgs.KeyboardSession.KeyPressCount);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

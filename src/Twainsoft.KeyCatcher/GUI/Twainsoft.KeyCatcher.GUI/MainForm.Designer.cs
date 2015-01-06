@@ -37,6 +37,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keyStrokeCount = new System.Windows.Forms.Label();
+            this.sessionStartDate = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.notifyIconContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,48 +61,68 @@
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.notifyIconContextMenu.Name = "notifyIconContextMenu";
-            this.notifyIconContextMenu.Size = new System.Drawing.Size(153, 98);
+            this.notifyIconContextMenu.Size = new System.Drawing.Size(125, 76);
             // 
             // maximizeToolStripMenuItem
             // 
             this.maximizeToolStripMenuItem.Name = "maximizeToolStripMenuItem";
-            this.maximizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.maximizeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.maximizeToolStripMenuItem.Text = "&Maximize";
             this.maximizeToolStripMenuItem.Click += new System.EventHandler(this.maximizeToolStripMenuItem_Click);
             // 
             // minimizeToolStripMenuItem
             // 
             this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
-            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.minimizeToolStripMenuItem.Text = "M&inimize";
             this.minimizeToolStripMenuItem.Click += new System.EventHandler(this.minimizeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(121, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // keyStrokeCount
             // 
-            this.keyStrokeCount.AutoSize = true;
-            this.keyStrokeCount.Location = new System.Drawing.Point(117, 78);
+            this.keyStrokeCount.Location = new System.Drawing.Point(12, 101);
             this.keyStrokeCount.Name = "keyStrokeCount";
-            this.keyStrokeCount.Size = new System.Drawing.Size(113, 13);
+            this.keyStrokeCount.Size = new System.Drawing.Size(330, 13);
             this.keyStrokeCount.TabIndex = 0;
             this.keyStrokeCount.Text = "Current Key Strokes: 0";
+            this.keyStrokeCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // sessionStartDate
+            // 
+            this.sessionStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sessionStartDate.Location = new System.Drawing.Point(12, 59);
+            this.sessionStartDate.Name = "sessionStartDate";
+            this.sessionStartDate.Size = new System.Drawing.Size(330, 13);
+            this.sessionStartDate.TabIndex = 1;
+            this.sessionStartDate.Text = "Session Active Since: --";
+            this.sessionStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(12, 177);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(330, 96);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 285);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.sessionStartDate);
             this.Controls.Add(this.keyStrokeCount);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -113,7 +135,6 @@
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.notifyIconContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -126,6 +147,8 @@
         private System.Windows.Forms.ToolStripMenuItem minimizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Label sessionStartDate;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
