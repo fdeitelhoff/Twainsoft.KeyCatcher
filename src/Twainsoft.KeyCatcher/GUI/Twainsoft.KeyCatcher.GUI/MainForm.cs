@@ -27,7 +27,6 @@ namespace Twainsoft.KeyCatcher.GUI
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                notifyIcon.ShowBalloonTip(500);
                 Hide();
             }
         }
@@ -60,7 +59,6 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void minimizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            notifyIcon.ShowBalloonTip(500);
             Hide();
         }
 

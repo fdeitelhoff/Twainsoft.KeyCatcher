@@ -95,7 +95,7 @@
             this.keyStrokeCount.Name = "keyStrokeCount";
             this.keyStrokeCount.Size = new System.Drawing.Size(330, 13);
             this.keyStrokeCount.TabIndex = 0;
-            this.keyStrokeCount.Text = "Current Key Strokes: 0";
+            this.keyStrokeCount.Text = "Current Key Strokes: --";
             this.keyStrokeCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sessionStartDate
