@@ -13,6 +13,7 @@ namespace Twainsoft.KeyCatcher.GUI
             InitializeComponent();
 
             KeyboardCatcher = new KeyboardCatcher();
+            KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
             KeyboardCatcher.KeyStroked += KeyboardCatcherOnKeyStroked;
         }
 
@@ -31,10 +32,19 @@ namespace Twainsoft.KeyCatcher.GUI
             }
         }
 
-        private void KeyboardCatcherOnKeyStroked(object sender, KeyStrokeEventArgs keyStrokeEventArgs)
+        private void KeyboardCatcherOnSessionStarted(object sender, SessionStartedEventArgs sessionStartedEventArgs)
         {
             sessionStartDate.Text = string.Format("Session Active Since: {0}",
-                keyStrokeEventArgs.KeyboardSession.StartDate);
+                sessionStartedEventArgs.KeyboardSession.StartDate);
+            keyStrokeCount.Text = string.Format("Current Key Strokes: {0}",
+                sessionStartedEventArgs.KeyboardSession.KeyPressCount);
+
+            notifyIcon.ShowBalloonTip(500, "Session started", "A session was started. All keyboard input will be caught now!", 
+                ToolTipIcon.Info);
+        }
+
+        private void KeyboardCatcherOnKeyStroked(object sender, KeyStrokeEventArgs keyStrokeEventArgs)
+        {
             keyStrokeCount.Text = string.Format("Current Key Strokes: {0}",
                 keyStrokeEventArgs.KeyboardSession.KeyPressCount);
         }

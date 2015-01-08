@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Twainsoft.KeyCatcher.Core
+namespace Twainsoft.KeyCatcher.Core.Keyboard
 {
     public class KeyboardSession
     {

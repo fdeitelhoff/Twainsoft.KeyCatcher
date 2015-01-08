@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -15,8 +16,12 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private KeyboardSession ActiveKeyboardSession { get; set; }
 
-        public event KeyStrokeEventHandler KeyStroked;
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
+        public event KeyStrokeEventHandler KeyStroked;
+        
+        public delegate void SessionStartedEventHandler(object sender, SessionStartedEventArgs e);
+        public event SessionStartedEventHandler SessionStarted;
+        
 
         private bool IsSessionActive
         {
@@ -34,17 +39,12 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             KeyboardHookListener.KeyUp += KeyboardHookListenerOnKeyUp;
             KeyboardHookListener.KeyDown += KeyboardHookListenerOnKeyDown;
 
-            // The KeysConverter is not culture invariant! This seems to fix it.
-            var currentCulture = Thread.CurrentThread.CurrentCulture;
-            var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
-
+            // The KeysConverter is culture variant! 
+            // Internally the key chars should be culture invariant so the culture is changed to en-US here.
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
             KeysConverter = new KeysConverter();
-
-            Thread.CurrentThread.CurrentCulture = currentCulture;
-            Thread.CurrentThread.CurrentUICulture = currentUiCulture;
         }
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
@@ -55,8 +55,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
                 var session = new KeyboardSession();
                 ActiveKeyboardSession = session;
 
-                // TODO: Maybe a SessionStarted event is better then to misuse this event here.
-                OnKeyStroke();
+                OnSessionStarted();
             }
         }
 
@@ -66,8 +65,6 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             {
                 var keyChar = KeysConverter.ConvertToInvariantString(keyEventArgs.KeyData);
                 Console.WriteLine("KeyUp " + keyChar);
-
-                ActiveKeyboardSession.KeyPress();
 
                 OnKeyStroke();
             }
@@ -80,9 +77,19 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private void OnKeyStroke()
         {
+            ActiveKeyboardSession.KeyPress();
+
             if (KeyStroked != null)
             {
                 KeyStroked(this, new KeyStrokeEventArgs(ActiveKeyboardSession));
+            }
+        }
+
+        private void OnSessionStarted()
+        {
+            if (SessionStarted != null)
+            {
+                SessionStarted(this, new SessionStartedEventArgs(ActiveKeyboardSession));
             }
         }
     }
