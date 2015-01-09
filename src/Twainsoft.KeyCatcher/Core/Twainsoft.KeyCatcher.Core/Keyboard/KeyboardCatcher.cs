@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Dynamic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -12,7 +11,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
     {
         private KeyboardHookListener KeyboardHookListener { get; set; }
 
-        private KeysConverter KeysConverter { get; set; }
+        private KeysConverter KeysConverter { get; set; } 
 
         private KeyboardSession ActiveKeyboardSession { get; set; }
 
@@ -66,18 +65,18 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
                 var keyChar = KeysConverter.ConvertToInvariantString(keyEventArgs.KeyData);
                 Console.WriteLine("KeyUp " + keyChar);
 
-                OnKeyStroke();
+                OnKeyStroke(keyChar);
             }
         }
 
-        private bool StartSession(KeyEventArgs keyEventArgs)
+        private bool StartSession(KeyEventArgs keyEventArgs) 
         {
             return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.K;
         }
 
-        private void OnKeyStroke()
+        private void OnKeyStroke(string keyChar)
         {
-            ActiveKeyboardSession.KeyPress();
+            ActiveKeyboardSession.KeyPress(keyChar);
 
             if (KeyStroked != null)
             {
