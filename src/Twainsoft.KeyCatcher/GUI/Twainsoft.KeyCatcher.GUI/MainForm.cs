@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
+using Twainsoft.KeyCatcher.GUI.Properties;
 
 namespace Twainsoft.KeyCatcher.GUI
 {
@@ -13,7 +14,9 @@ namespace Twainsoft.KeyCatcher.GUI
             InitializeComponent();
 
             KeyboardCatcher = new KeyboardCatcher();
+            KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
+            KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;
             KeyboardCatcher.KeyStroked += KeyboardCatcherOnKeyStroked;
         }
 
@@ -32,6 +35,18 @@ namespace Twainsoft.KeyCatcher.GUI
             }
         }
 
+        private void KeyboardCatcherOnSessionStarting(object sender, SessionStartingEventArgs sessionStartingEventArgs)
+        {
+            // Ask the user if the current active session should be stopped.
+            if (MessageBox.Show(this, Resources.MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Message,
+                Resources.MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Title,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+                sessionStartingEventArgs.SessionStart = false;
+            }
+        }
+
         private void KeyboardCatcherOnSessionStarted(object sender, SessionStartedEventArgs sessionStartedEventArgs)
         {
             sessionStartDate.Text = string.Format("Session Active Since: {0}",
@@ -40,6 +55,15 @@ namespace Twainsoft.KeyCatcher.GUI
                 sessionStartedEventArgs.KeyboardSession.KeyPressCount);
 
             notifyIcon.ShowBalloonTip(500, "Session started", "A session was started. All keyboard input will be caught now!", 
+                ToolTipIcon.Info);
+        }
+
+        private void KeyboardCatcherOnSessionStopped(object sender, SessionStoppedEventArgs sessionStoppedEventArgs)
+        {
+            sessionStartDate.Text = string.Format("Session Active Since: --");
+            keyStrokeCount.Text = string.Format("Current Key Strokes: --");
+
+            notifyIcon.ShowBalloonTip(500, "Session stopped", "A session was stopped. Keyboard input will no longer be caught!",
                 ToolTipIcon.Info);
         }
 

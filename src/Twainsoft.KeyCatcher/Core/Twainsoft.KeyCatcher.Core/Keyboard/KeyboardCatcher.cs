@@ -17,10 +17,15 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
         public event KeyStrokeEventHandler KeyStroked;
-        
+
+        public delegate void SessionStartingEventHandler(object sender, SessionStartingEventArgs e);
+        public event SessionStartingEventHandler SessionStarting;
+
         public delegate void SessionStartedEventHandler(object sender, SessionStartedEventArgs e);
         public event SessionStartedEventHandler SessionStarted;
-        
+
+        public delegate void SessionStoppedEventHandler(object sender, SessionStoppedEventArgs e);
+        public event SessionStoppedEventHandler SessionStopped;
 
         private bool IsSessionActive
         {
@@ -49,12 +54,23 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
             // If we register the session start key combination, we start a new one.
-            if (StartSession(keyEventArgs))
+            if (StartSessionShortCut(keyEventArgs))
             {
-                var session = new KeyboardSession();
-                ActiveKeyboardSession = session;
+                // Ask via event if the current active session should be stopped first if we detect one.
+                if (!IsSessionActive || OnSessionStarting())
+                {
+                    var session = new KeyboardSession();
+                    ActiveKeyboardSession = session;
 
-                OnSessionStarted();
+                    OnSessionStarted();
+                }
+            }
+            // If we register the session stop key combination, we stop the currently active one.
+            else if (IsSessionActive && StopSessionShortCut(keyEventArgs))
+            {
+                OnSessionStopped();
+
+                ActiveKeyboardSession = null;
             }
         }
 
@@ -69,9 +85,14 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             }
         }
 
-        private bool StartSession(KeyEventArgs keyEventArgs) 
+        private bool StartSessionShortCut(KeyEventArgs keyEventArgs) 
         {
             return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.K;
+        }
+
+        private bool StopSessionShortCut(KeyEventArgs keyEventArgs)
+        {
+            return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.L;
         }
 
         private void OnKeyStroke(string keyChar)
@@ -84,11 +105,33 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             }
         }
 
+        private bool OnSessionStarting()
+        {
+            if (SessionStarting != null)
+            {
+                var sessionStartingEventArgs = new SessionStartingEventArgs(true);
+
+                SessionStarting(this, sessionStartingEventArgs);
+
+                return sessionStartingEventArgs.SessionStart;
+            }
+
+            return true;
+        }
+
         private void OnSessionStarted()
         {
             if (SessionStarted != null)
             {
                 SessionStarted(this, new SessionStartedEventArgs(ActiveKeyboardSession));
+            }
+        }
+
+        private void OnSessionStopped()
+        {
+            if (SessionStopped != null)
+            {
+                SessionStopped(this, new SessionStoppedEventArgs(ActiveKeyboardSession));
             }
         }
     }

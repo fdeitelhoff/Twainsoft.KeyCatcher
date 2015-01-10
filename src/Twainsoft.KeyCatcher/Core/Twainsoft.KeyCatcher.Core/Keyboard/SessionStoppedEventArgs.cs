@@ -2,11 +2,11 @@
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard
 {
-    public class SessionStartedEventArgs : EventArgs
+    public class SessionStoppedEventArgs : EventArgs
     {
         public KeyboardSession KeyboardSession { get; set; }
 
-        public SessionStartedEventArgs(KeyboardSession keyboardSession)
+        public SessionStoppedEventArgs(KeyboardSession keyboardSession)
         {
             KeyboardSession = keyboardSession;
         }

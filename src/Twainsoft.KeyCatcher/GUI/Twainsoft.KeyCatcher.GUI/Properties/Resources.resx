@@ -121,4 +121,10 @@
   <data name="tray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tray.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Title" xml:space="preserve">
+    <value>Active Session</value>
+  </data>
+  <data name="MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Message" xml:space="preserve">
+    <value>There's currently an active session. Would you like to stop it and start a new one?</value>
+  </data>
 </root>
