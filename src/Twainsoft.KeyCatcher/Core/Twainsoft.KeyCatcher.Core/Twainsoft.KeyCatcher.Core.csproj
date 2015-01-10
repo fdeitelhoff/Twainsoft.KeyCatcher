@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="Keyboard\KeyboardSession.cs" />
     <Compile Include="Keyboard\KeyboardCatcher.cs" />
-    <Compile Include="Keyboard\KeyStrokeEventArgs.cs" />
-    <Compile Include="Keyboard\SessionStartingEventArgs.cs" />
-    <Compile Include="Keyboard\SessionStoppedEventArgs.cs" />
-    <Compile Include="Keyboard\SessionStartedEventArgs.cs" />
+    <Compile Include="Keyboard\Events\KeyStrokeEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStartingEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStoppedEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStartedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

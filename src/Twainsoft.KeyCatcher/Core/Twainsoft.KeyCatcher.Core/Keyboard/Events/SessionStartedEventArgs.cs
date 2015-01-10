@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Twainsoft.KeyCatcher.Core.Keyboard
+namespace Twainsoft.KeyCatcher.Core.Keyboard.Events
 {
     public class SessionStartedEventArgs : EventArgs
     {

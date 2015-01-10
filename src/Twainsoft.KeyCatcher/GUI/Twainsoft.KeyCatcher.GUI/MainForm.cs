@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
+using Twainsoft.KeyCatcher.Core.Keyboard.Events;
 using Twainsoft.KeyCatcher.GUI.Properties;
 
 namespace Twainsoft.KeyCatcher.GUI
