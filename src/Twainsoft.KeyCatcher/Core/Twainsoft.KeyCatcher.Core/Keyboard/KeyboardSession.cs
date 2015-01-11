@@ -5,14 +5,16 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 {
     public class KeyboardSession
     {
-        public DateTime StartDate { get; private set; }
+        public string Name { get; private set; }
+        public DateTime Start { get; private set; }
+        public DateTime End { get; private set; }
 
         public long KeyPressCount { get; private set; }
         private List<string> PressedKeys { get; set; }
 
         public KeyboardSession()
         {
-            StartDate = DateTime.Now;
+            Start = DateTime.Now;
 
             PressedKeys = new List<string>();
         }
@@ -22,6 +24,12 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             KeyPressCount++;
 
             PressedKeys.Add(keyChar);
+        }
+
+        public void Stop(string sessionName)
+        {
+            Name = sessionName;
+            End = DateTime.Now;
         }
     }
 }

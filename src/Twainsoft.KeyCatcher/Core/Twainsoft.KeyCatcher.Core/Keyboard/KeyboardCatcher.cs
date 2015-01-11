@@ -16,6 +16,13 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private KeyboardSession ActiveKeyboardSession { get; set; }
 
+        private bool IsKeyboardInputCatched { get; set; }
+
+        private bool IsSessionActive
+        {
+            get { return ActiveKeyboardSession != null && IsKeyboardInputCatched; }
+        }
+
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
         public event KeyStrokeEventHandler KeyStroked;
 
@@ -25,13 +32,11 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public delegate void SessionStartedEventHandler(object sender, SessionStartedEventArgs e);
         public event SessionStartedEventHandler SessionStarted;
 
+        public delegate void SessionStoppingEventHandler(object sender, SessionStoppingEventArgs e);
+        public event SessionStoppingEventHandler SessionStopping;
+
         public delegate void SessionStoppedEventHandler(object sender, SessionStoppedEventArgs e);
         public event SessionStoppedEventHandler SessionStopped;
-
-        private bool IsSessionActive
-        {
-            get { return ActiveKeyboardSession != null; }
-        }
 
         public KeyboardCatcher()
         {
@@ -50,6 +55,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
             KeysConverter = new KeysConverter();
+
+            IsKeyboardInputCatched = false;
         }
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
@@ -60,6 +67,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
                 // Ask via event if the current active session should be stopped first if we detect one.
                 if (!IsSessionActive || OnSessionStarting())
                 {
+                    IsKeyboardInputCatched = true;
+
                     var session = new KeyboardSession();
                     ActiveKeyboardSession = session;
 
@@ -69,9 +78,13 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             // If we register the session stop key combination, we stop the currently active one.
             else if (IsSessionActive && StopSessionShortCut(keyEventArgs))
             {
-                OnSessionStopped();
+                IsKeyboardInputCatched = false;
 
-                ActiveKeyboardSession = null;
+                var sessionName = OnSessionStopping("New Session Name");
+
+                ActiveKeyboardSession.Stop(sessionName);
+
+                OnSessionStopped();
             }
         }
 
@@ -128,12 +141,28 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             }
         }
 
+        private string OnSessionStopping(string sessionName)
+        {
+            if (SessionStopping != null)
+            {
+                var sessionStoppingEventArgs = new SessionStoppingEventArgs(sessionName);
+
+                SessionStopping(this, sessionStoppingEventArgs);
+
+                return sessionStoppingEventArgs.SessionName;
+            }
+
+            return sessionName;
+        }
+
         private void OnSessionStopped()
         {
             if (SessionStopped != null)
             {
                 SessionStopped(this, new SessionStoppedEventArgs(ActiveKeyboardSession));
             }
+
+            ActiveKeyboardSession = null;
         }
     }
 }
