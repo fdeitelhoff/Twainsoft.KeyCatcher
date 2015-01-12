@@ -18,7 +18,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private bool IsKeyboardInputCatched { get; set; }
 
-        private bool IsSessionActive
+        public bool IsSessionActive
         {
             get { return ActiveKeyboardSession != null && IsKeyboardInputCatched; }
         }

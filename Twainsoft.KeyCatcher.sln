@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{573D818A-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.Core", "src\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj", "{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0A91B7C7-4913-4E8C-895B-41CB7E7B9BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.Core.Tests", "tests\Twainsoft.KeyCatcher.Core.Tests\Twainsoft.KeyCatcher.Core.Tests.csproj", "{21258ED1-053A-456C-A958-AA70F26FBEAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21258ED1-053A-456C-A958-AA70F26FBEAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21258ED1-053A-456C-A958-AA70F26FBEAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21258ED1-053A-456C-A958-AA70F26FBEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21258ED1-053A-456C-A958-AA70F26FBEAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,5 +49,6 @@ Global
 		{76EC3FEA-FCFD-4010-8007-A25C0A81BD76} = {640EB9C1-8EF0-44AD-8EA8-E8BEFDE3B483}
 		{4ED852C6-E320-4004-A71C-282CF0E238D7} = {844E568F-998A-4E24-A455-62AA70857148}
 		{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E} = {573D818A-8FD3-4C7C-AB17-EB128F57B827}
+		{21258ED1-053A-456C-A958-AA70F26FBEAD} = {0A91B7C7-4913-4E8C-895B-41CB7E7B9BF5}
 	EndGlobalSection
 EndGlobal
