@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MouseKeyboardActivityMonitor">
-      <HintPath>..\..\..\..\lib\InputActivityMonitor\MouseKeyboardActivityMonitor.dll</HintPath>
+      <HintPath>..\..\lib\InputActivityMonitor\MouseKeyboardActivityMonitor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

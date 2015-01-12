@@ -5,15 +5,15 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{640EB9C1-8EF0-44AD-8EA8-E8BEFDE3B483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.GUI", "GUI\Twainsoft.KeyCatcher.GUI\Twainsoft.KeyCatcher.GUI.csproj", "{76EC3FEA-FCFD-4010-8007-A25C0A81BD76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.GUI", "src\Twainsoft.KeyCatcher.GUI\Twainsoft.KeyCatcher.GUI.csproj", "{76EC3FEA-FCFD-4010-8007-A25C0A81BD76}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layouts", "Layouts", "{844E568F-998A-4E24-A455-62AA70857148}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.DarkLayout", "Layouts\Twainsoft.KeyCatcher.DarkLayout\Twainsoft.KeyCatcher.DarkLayout.csproj", "{4ED852C6-E320-4004-A71C-282CF0E238D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.DarkLayout", "src\Twainsoft.KeyCatcher.DarkLayout\Twainsoft.KeyCatcher.DarkLayout.csproj", "{4ED852C6-E320-4004-A71C-282CF0E238D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{573D818A-8FD3-4C7C-AB17-EB128F57B827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.Core", "Core\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj", "{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.Core", "src\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj", "{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

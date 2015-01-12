@@ -88,17 +88,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj">
+    <None Include="Resources\tray.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj">
       <Project>{53cc3e68-f108-40e8-8f48-eaefc41e4a2e}</Project>
       <Name>Twainsoft.KeyCatcher.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Layouts\Twainsoft.KeyCatcher.DarkLayout\Twainsoft.KeyCatcher.DarkLayout.csproj">
+    <ProjectReference Include="..\Twainsoft.KeyCatcher.DarkLayout\Twainsoft.KeyCatcher.DarkLayout.csproj">
       <Project>{4ed852c6-e320-4004-a71c-282cf0e238d7}</Project>
       <Name>Twainsoft.KeyCatcher.DarkLayout</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tray.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
