@@ -98,6 +98,24 @@ namespace Twainsoft.KeyCatcher.GUI
             }
         }
 
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (KeyboardCatcher.IsSessionActive)
+            {
+                if (MessageBox.Show(this,
+                    "There's currently an active session. Would you like to close the application and end the session?",
+                    "Session Active", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
+                    DialogResult.Yes)
+                {
+                    Console.WriteLine("End Session");
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
         private void maximizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Show();
