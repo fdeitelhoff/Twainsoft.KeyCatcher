@@ -78,13 +78,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             // If we register the session stop key combination, we stop the currently active one.
             else if (IsSessionActive && StopSessionShortCut(keyEventArgs))
             {
-                IsKeyboardInputCatched = false;
-
-                var sessionName = OnSessionStopping("New Session Name");
-
-                ActiveKeyboardSession.Stop(sessionName);
-
-                OnSessionStopped();
+                EndSession();
             }
         }
 
@@ -117,6 +111,17 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             {
                 KeyStroked(this, new KeyStrokeEventArgs(ActiveKeyboardSession));
             }
+        }
+
+        public void EndSession()
+        {
+            IsKeyboardInputCatched = false;
+
+            var sessionName = OnSessionStopping("New Session Name");
+
+            ActiveKeyboardSession.Stop(sessionName);
+
+            OnSessionStopped();
         }
 
         private bool OnSessionStarting()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.Events;
@@ -62,6 +63,8 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void KeyboardCatcherOnSessionStopping(object sender, SessionStoppingEventArgs sessionStoppingEventArgs)
         {
+            //new Thread(new ParameterizedThreadStart(test)).Start(sessionStoppingEventArgs);
+
             using (var sessionData = new SessionData(sessionStoppingEventArgs.SessionName))
             {
                 sessionData.TopMost = true;
@@ -70,6 +73,19 @@ namespace Twainsoft.KeyCatcher.GUI
                 sessionStoppingEventArgs.SessionName = sessionData.SessionName;
             }
         }
+
+        /*private void test(object sessionStoppingEventArgs)
+        {
+            var args = sessionStoppingEventArgs as SessionStoppingEventArgs;
+
+            using (var sessionData = new SessionData(args.SessionName))
+            {
+                sessionData.TopMost = true;
+                sessionData.ShowDialog();
+
+                args.SessionName = sessionData.SessionName;
+            }
+        }*/
 
         private void KeyboardCatcherOnSessionStopped(object sender, SessionStoppedEventArgs sessionStoppedEventArgs)
         {
@@ -107,7 +123,7 @@ namespace Twainsoft.KeyCatcher.GUI
                     "Session Active", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
                     DialogResult.Yes)
                 {
-                    Console.WriteLine("End Session");
+                    KeyboardCatcher.EndSession();
                 }
                 else
                 {
