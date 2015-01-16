@@ -57,7 +57,7 @@ namespace Twainsoft.KeyCatcher.GUI
             keyStrokeCount.Text = string.Format("Current Key Strokes: {0}",
                 sessionStartedEventArgs.KeyboardSession.KeyPressCount);
 
-            notifyIcon.ShowBalloonTip(500, "Session started", "A session was started. All keyboard input will be caught now!", 
+            notifyIcon.ShowBalloonTip(500, "Session started", "A session was started. All keyboard input will be caught now!",
                 ToolTipIcon.Info);
         }
 
@@ -95,7 +95,7 @@ namespace Twainsoft.KeyCatcher.GUI
             }
 
             sessionStartDate.Text = string.Format("Session Active Since: --");
-                keyStrokeCount.Text = string.Format("Current Key Strokes: --");
+            keyStrokeCount.Text = string.Format("Current Key Strokes: --");
 
             notifyIcon.ShowBalloonTip(500, "Session stopped",
                 string.Format("The session '{0}' was stopped. The keyboard input will no longer be caught!",
