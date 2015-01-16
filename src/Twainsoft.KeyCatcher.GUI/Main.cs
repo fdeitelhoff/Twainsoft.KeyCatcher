@@ -63,37 +63,43 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void KeyboardCatcherOnSessionStopping(object sender, SessionStoppingEventArgs sessionStoppingEventArgs)
         {
-            //new Thread(new ParameterizedThreadStart(test)).Start(sessionStoppingEventArgs);
+            // We need to invoke the stopping event within a new thread.
+            // The reason is: if its in the same thread we have a 4-5 seconds blocking and the session data windows isn't accessible.
+            new Thread(ShowSessionDataWindow).Start(sessionStoppingEventArgs);
+        }
+
+        private void ShowSessionDataWindow(object parameter)
+        {
+            var sessionStoppingEventArgs = parameter as SessionStoppingEventArgs;
+
+            if (sessionStoppingEventArgs == null)
+            {
+                throw new ArgumentNullException("The parameter cannot be null!");
+            }
 
             using (var sessionData = new SessionData(sessionStoppingEventArgs.SessionName))
             {
                 sessionData.TopMost = true;
                 sessionData.ShowDialog();
 
-                sessionStoppingEventArgs.SessionName = sessionData.SessionName;
+                KeyboardCatcher.EndSession(sessionData.SessionName);
             }
         }
 
-        /*private void test(object sessionStoppingEventArgs)
-        {
-            var args = sessionStoppingEventArgs as SessionStoppingEventArgs;
-
-            using (var sessionData = new SessionData(args.SessionName))
-            {
-                sessionData.TopMost = true;
-                sessionData.ShowDialog();
-
-                args.SessionName = sessionData.SessionName;
-            }
-        }*/
-
         private void KeyboardCatcherOnSessionStopped(object sender, SessionStoppedEventArgs sessionStoppedEventArgs)
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler<SessionStoppedEventArgs>(KeyboardCatcherOnSessionStopped), sender,
+                    sessionStoppedEventArgs);
+            }
+
             sessionStartDate.Text = string.Format("Session Active Since: --");
-            keyStrokeCount.Text = string.Format("Current Key Strokes: --");
+                keyStrokeCount.Text = string.Format("Current Key Strokes: --");
 
             notifyIcon.ShowBalloonTip(500, "Session stopped",
-                string.Format("The session '{0}' was stopped. The keyboard input will no longer be caught!", sessionStoppedEventArgs.KeyboardSession.Name),
+                string.Format("The session '{0}' was stopped. The keyboard input will no longer be caught!",
+                    sessionStoppedEventArgs.KeyboardSession.Name),
                 ToolTipIcon.Info);
         }
 
@@ -123,7 +129,7 @@ namespace Twainsoft.KeyCatcher.GUI
                     "Session Active", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
                     DialogResult.Yes)
                 {
-                    KeyboardCatcher.EndSession();
+                    KeyboardCatcher.CancelSession();
                 }
                 else
                 {
