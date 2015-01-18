@@ -79,7 +79,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
             using (var sessionData = new SessionData(sessionStoppingEventArgs.SessionName))
             {
-                sessionData.TopMost = true;
+                sessionData.BringToFront();
                 sessionData.ShowDialog();
 
                 KeyboardCatcher.EndSession(sessionData.SessionName);

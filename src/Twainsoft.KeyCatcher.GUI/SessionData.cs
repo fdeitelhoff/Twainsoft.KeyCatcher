@@ -22,10 +22,25 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void sessionName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
+            /*if (e.KeyData == Keys.Enter)
             {
                 Close();
-            }
+            }*/
+        }
+
+        private void buttonSave_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonDiscard_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void buttonCancel_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
