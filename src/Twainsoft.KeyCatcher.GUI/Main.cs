@@ -82,7 +82,10 @@ namespace Twainsoft.KeyCatcher.GUI
                 sessionData.BringToFront();
                 sessionData.ShowDialog();
 
-                KeyboardCatcher.EndSession(sessionData.SessionName);
+                if (sessionData.ClosingReason == ClosingReason.Save)
+                {
+                    KeyboardCatcher.EndSession(sessionData.SessionName);
+                }
             }
         }
 
