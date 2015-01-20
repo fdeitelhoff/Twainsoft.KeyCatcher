@@ -20,6 +20,9 @@ namespace Twainsoft.KeyCatcher.GUI
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
             KeyboardCatcher.SessionStopping += KeyboardCatcherOnSessionStopping;
             KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;
+            KeyboardCatcher.SessionDiscarded += KeyboardCatcherOnSessionDiscarded;
+
+            // Catch all key strokes (KeyDown + KeyUp).
             KeyboardCatcher.KeyStroked += KeyboardCatcherOnKeyStroked;
         }
 
@@ -61,6 +64,7 @@ namespace Twainsoft.KeyCatcher.GUI
                 ToolTipIcon.Info);
         }
 
+        // TODO: Rename the Event top SessionSaved or something! But SessionStopping is good!
         private void KeyboardCatcherOnSessionStopping(object sender, SessionStoppingEventArgs sessionStoppingEventArgs)
         {
             // We need to invoke the stopping event within a new thread.
@@ -82,9 +86,16 @@ namespace Twainsoft.KeyCatcher.GUI
                 sessionData.BringToFront();
                 sessionData.ShowDialog();
 
-                if (sessionData.ClosingReason == ClosingReason.Save)
+                switch (sessionData.ClosingReason)
                 {
-                    KeyboardCatcher.EndSession(sessionData.SessionName);
+                    case ClosingReason.Save:
+                        KeyboardCatcher.SaveSession(sessionData.SessionName);
+                        break;
+                    case ClosingReason.Cancel: // TODO: Misleading name. That's not a cancel! It cancels the cancellation :). Maybe Continue/Continue session?
+                        break;
+                    case ClosingReason.Discard:
+                        KeyboardCatcher.DiscardSession();
+                        break;
                 }
             }
         }
@@ -100,9 +111,25 @@ namespace Twainsoft.KeyCatcher.GUI
             sessionStartDate.Text = string.Format("Session Active Since: --");
             keyStrokeCount.Text = string.Format("Current Key Strokes: --");
 
-            notifyIcon.ShowBalloonTip(500, "Session stopped",
-                string.Format("The session '{0}' was stopped. The keyboard input will no longer be caught!",
+            notifyIcon.ShowBalloonTip(500, "Session saved",
+                string.Format("The session '{0}' was stopped and saved. The keyboard input will no longer be caught!",
                     sessionStoppedEventArgs.KeyboardSession.Name),
+                ToolTipIcon.Info);
+        }
+
+        private void KeyboardCatcherOnSessionDiscarded(object sender, EventArgs eventArgs)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new EventHandler<EventArgs>(KeyboardCatcherOnSessionDiscarded), sender,
+                    eventArgs);
+            }
+
+            sessionStartDate.Text = string.Format("Session Active Since: --");
+            keyStrokeCount.Text = string.Format("Current Key Strokes: --");
+
+            notifyIcon.ShowBalloonTip(500, "Session discarded",
+                "The session was discarded and therefore deleted. The keyboard input will no longer be caught!",
                 ToolTipIcon.Info);
         }
 

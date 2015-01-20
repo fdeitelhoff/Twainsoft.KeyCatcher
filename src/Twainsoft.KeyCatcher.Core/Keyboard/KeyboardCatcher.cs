@@ -38,6 +38,9 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public delegate void SessionStoppedEventHandler(object sender, SessionStoppedEventArgs e);
         public event SessionStoppedEventHandler SessionStopped;
 
+        public delegate void SessionDiscardedEventHandler(object sender, EventArgs e);
+        public event SessionDiscardedEventHandler SessionDiscarded;
+
         public KeyboardCatcher()
         {
             KeyboardHookListener = new KeyboardHookListener(new GlobalHooker())
@@ -120,11 +123,18 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             OnSessionStopping("New Session Name");
         }
 
-        public void EndSession(string sessionName)
+        public void SaveSession(string sessionName)
         {
             ActiveKeyboardSession.Stop(sessionName);
 
             OnSessionStopped();
+        }
+
+        public void DiscardSession()
+        {
+            ActiveKeyboardSession = null;
+
+            OnSessionDiscarded();
         }
 
         private bool OnSessionStarting()
@@ -165,6 +175,14 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             }
 
             ActiveKeyboardSession = null;
+        }
+
+        private void OnSessionDiscarded()
+        {
+            if (SessionDiscarded != null)
+            {
+                SessionDiscarded(this, EventArgs.Empty);
+            }
         }
     }
 }
