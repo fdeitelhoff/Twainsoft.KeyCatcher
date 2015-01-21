@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.sessionName = new System.Windows.Forms.TextBox();
-            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonContinue = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonDiscard = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -50,18 +50,17 @@
             this.sessionName.Name = "sessionName";
             this.sessionName.Size = new System.Drawing.Size(259, 20);
             this.sessionName.TabIndex = 1;
-            this.sessionName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.sessionName_KeyUp);
             // 
-            // buttonCancel
+            // buttonContinue
             // 
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(199, 51);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 2;
-            this.buttonCancel.Text = "&Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonContinue.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonContinue.Location = new System.Drawing.Point(199, 51);
+            this.buttonContinue.Name = "buttonContinue";
+            this.buttonContinue.Size = new System.Drawing.Size(75, 23);
+            this.buttonContinue.TabIndex = 2;
+            this.buttonContinue.Text = "&Continue";
+            this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonSave
             // 
@@ -88,11 +87,11 @@
             this.AcceptButton = this.buttonSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.buttonCancel;
+            this.CancelButton = this.buttonContinue;
             this.ClientSize = new System.Drawing.Size(286, 87);
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonContinue);
             this.Controls.Add(this.sessionName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -112,7 +111,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox sessionName;
-        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonContinue;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonDiscard;
     }

@@ -91,10 +91,11 @@ namespace Twainsoft.KeyCatcher.GUI
                     case ClosingReason.Save:
                         KeyboardCatcher.SaveSession(sessionData.SessionName);
                         break;
-                    case ClosingReason.Cancel: // TODO: Misleading name. That's not a cancel! It cancels the cancellation :). Maybe Continue/Continue session?
-                        break;
                     case ClosingReason.Discard:
                         KeyboardCatcher.DiscardSession();
+                        break;
+                    case ClosingReason.Continue:
+                        KeyboardCatcher.ContinueSession();
                         break;
                 }
             }

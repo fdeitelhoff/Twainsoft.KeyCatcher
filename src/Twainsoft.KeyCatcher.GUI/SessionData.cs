@@ -22,14 +22,6 @@ namespace Twainsoft.KeyCatcher.GUI
             sessionName.Text = name;
         }
 
-        private void sessionName_KeyUp(object sender, KeyEventArgs e)
-        {
-            /*if (e.KeyData == Keys.Enter)
-            {
-                Close();
-            }*/
-        }
-
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
             ClosingReason = ClosingReason.Save;
@@ -46,7 +38,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void buttonCancel_Click(object sender, System.EventArgs e)
         {
-            ClosingReason = ClosingReason.Cancel;
+            ClosingReason = ClosingReason.Continue;
 
             Close();
         }

@@ -137,6 +137,11 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             OnSessionDiscarded();
         }
 
+        public void ContinueSession()
+        {
+            IsKeyboardInputCatched = true;
+        }
+
         private bool OnSessionStarting()
         {
             if (SessionStarting != null)
