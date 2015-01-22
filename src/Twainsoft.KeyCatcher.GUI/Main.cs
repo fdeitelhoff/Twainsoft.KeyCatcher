@@ -21,6 +21,7 @@ namespace Twainsoft.KeyCatcher.GUI
             KeyboardCatcher.SessionStopping += KeyboardCatcherOnSessionStopping;
             KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;
             KeyboardCatcher.SessionDiscarded += KeyboardCatcherOnSessionDiscarded;
+            KeyboardCatcher.SessionContinued += KeyboardCatcherOnSessionContinued;
 
             // Catch all key strokes (KeyDown + KeyUp).
             KeyboardCatcher.KeyStroked += KeyboardCatcherOnKeyStroked;
@@ -43,7 +44,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void KeyboardCatcherOnSessionStarting(object sender, SessionStartingEventArgs sessionStartingEventArgs)
         {
-            // Ask the user if the current active session should be stopped.
+            // Ask the user if the current active session should be stopped for the new one.
             if (MessageBox.Show(this, Resources.MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Message,
                 Resources.MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Title,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -132,6 +133,12 @@ namespace Twainsoft.KeyCatcher.GUI
             notifyIcon.ShowBalloonTip(500, "Session discarded",
                 "The session was discarded and therefore deleted. The keyboard input will no longer be caught!",
                 ToolTipIcon.Info);
+        }
+
+        private void KeyboardCatcherOnSessionContinued(object sender, EventArgs eventArgs)
+        {
+            notifyIcon.ShowBalloonTip(500, "Session continued",
+                "The session was continued. All keyboard input is caught again!", ToolTipIcon.Info);
         }
 
         private void KeyboardCatcherOnKeyStroked(object sender, KeyStrokeEventArgs keyStrokeEventArgs)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -40,6 +41,9 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         public delegate void SessionDiscardedEventHandler(object sender, EventArgs e);
         public event SessionDiscardedEventHandler SessionDiscarded;
+
+        public delegate void SessionContinuedEventHandler(object sender, EventArgs e);
+        public event SessionContinuedEventHandler SessionContinued;
 
         public KeyboardCatcher()
         {
@@ -140,6 +144,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void ContinueSession()
         {
             IsKeyboardInputCatched = true;
+
+            OnSessionContinued();
         }
 
         private bool OnSessionStarting()
@@ -187,6 +193,14 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             if (SessionDiscarded != null)
             {
                 SessionDiscarded(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnSessionContinued()
+        {
+            if (SessionContinued != null)
+            {
+                SessionContinued(this, EventArgs.Empty);
             }
         }
     }
