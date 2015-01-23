@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Dynamic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,10 +17,16 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         private KeyboardSession ActiveKeyboardSession { get; set; }
 
         private bool IsKeyboardInputCatched { get; set; }
+        private bool IsCancellationInProgress { get; set; }
 
         public bool IsSessionActive
         {
             get { return ActiveKeyboardSession != null && IsKeyboardInputCatched; }
+        }
+
+        private bool IsSessionStartable
+        {
+            get { return ActiveKeyboardSession == null && !IsCancellationInProgress; }
         }
 
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
@@ -64,6 +69,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             KeysConverter = new KeysConverter();
 
             IsKeyboardInputCatched = false;
+            IsCancellationInProgress = false;
         }
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
@@ -83,7 +89,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
                 }
             }
             // If we register the session stop key combination, we stop the currently active one.
-            else if (IsSessionActive && StopSessionShortCut(keyEventArgs))
+            else if (IsSessionActive && !IsCancellationInProgress && StopSessionShortCut(keyEventArgs))
             {
                 CancelSession();
             }
@@ -123,6 +129,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void CancelSession()
         {
             IsKeyboardInputCatched = false;
+            IsCancellationInProgress = true;
 
             OnSessionStopping("New Session Name");
         }
@@ -130,6 +137,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void SaveSession(string sessionName)
         {
             ActiveKeyboardSession.Stop(sessionName);
+            IsCancellationInProgress = false;
 
             OnSessionStopped();
         }
@@ -137,6 +145,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void DiscardSession()
         {
             ActiveKeyboardSession = null;
+            IsCancellationInProgress = false;
 
             OnSessionDiscarded();
         }
@@ -144,6 +153,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void ContinueSession()
         {
             IsKeyboardInputCatched = true;
+            IsCancellationInProgress = false;
 
             OnSessionContinued();
         }
