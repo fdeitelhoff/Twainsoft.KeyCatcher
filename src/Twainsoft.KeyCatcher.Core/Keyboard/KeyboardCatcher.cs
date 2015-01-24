@@ -4,7 +4,8 @@ using System.Threading;
 using System.Windows.Forms;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
-using Twainsoft.KeyCatcher.Core.Keyboard.Events;
+using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
+using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard
 {

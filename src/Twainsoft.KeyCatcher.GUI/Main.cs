@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
-using Twainsoft.KeyCatcher.Core.Keyboard.Events;
+using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
 using Twainsoft.KeyCatcher.GUI.Properties;
 
 namespace Twainsoft.KeyCatcher.GUI
@@ -18,8 +18,8 @@ namespace Twainsoft.KeyCatcher.GUI
             KeyboardCatcher = new KeyboardCatcher();
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
-            KeyboardCatcher.SessionStopping += KeyboardCatcherOnSessionStopping;
-            KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;
+            KeyboardCatcher.SessionStopping += KeyboardCatcherOnSessionStopping;        // TODO: SessionCancelling?     -> not really stopping. Asking what to do.
+            KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;          // TODO: SessionStatusChanged?  -> status changed (save, discard, continue). Not just stopping
             KeyboardCatcher.SessionDiscarded += KeyboardCatcherOnSessionDiscarded;
             KeyboardCatcher.SessionContinued += KeyboardCatcherOnSessionContinued;
 
