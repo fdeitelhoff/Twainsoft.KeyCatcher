@@ -18,7 +18,7 @@ namespace Twainsoft.KeyCatcher.GUI
             KeyboardCatcher = new KeyboardCatcher();
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
-            KeyboardCatcher.SessionStopping += KeyboardCatcherOnSessionStopping;        // TODO: SessionCancelling?     -> not really stopping. Asking what to do.
+            KeyboardCatcher.SessionStatusChanging += KeyboardCatcherOnSessionStatusChanging;
             KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;          // TODO: SessionStatusChanged?  -> status changed (save, discard, continue). Not just stopping
             KeyboardCatcher.SessionDiscarded += KeyboardCatcherOnSessionDiscarded;
             KeyboardCatcher.SessionContinued += KeyboardCatcherOnSessionContinued;
@@ -65,8 +65,7 @@ namespace Twainsoft.KeyCatcher.GUI
                 ToolTipIcon.Info);
         }
 
-        // TODO: Rename the Event top SessionSaved or something! But SessionStopping is good!
-        private void KeyboardCatcherOnSessionStopping(object sender, SessionStoppingEventArgs sessionStoppingEventArgs)
+        private void KeyboardCatcherOnSessionStatusChanging(object sender, SessionStatusChangingEventArgs sessionStoppingEventArgs)
         {
             // We need to invoke the stopping event within a new thread.
             // The reason is: if its in the same thread we have a 4-5 seconds blocking and the session data windows isn't accessible.
@@ -75,14 +74,14 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void ShowSessionDataWindow(object parameter)
         {
-            var sessionStoppingEventArgs = parameter as SessionStoppingEventArgs;
+            var sessionStatusChangingEventArgs = parameter as SessionStatusChangingEventArgs;
 
-            if (sessionStoppingEventArgs == null)
+            if (sessionStatusChangingEventArgs == null)
             {
                 throw new ArgumentNullException("The parameter cannot be null!");
             }
 
-            using (var sessionData = new SessionData(sessionStoppingEventArgs.SessionName))
+            using (var sessionData = new SessionData(sessionStatusChangingEventArgs.SessionName))
             {
                 sessionData.BringToFront();
                 sessionData.ShowDialog();

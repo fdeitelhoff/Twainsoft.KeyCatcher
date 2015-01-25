@@ -2,11 +2,11 @@
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
 {
-    public class SessionStoppingEventArgs : EventArgs
+    public class SessionStatusChangingEventArgs : EventArgs
     {
         public string SessionName { get; private set; }
 
-        public SessionStoppingEventArgs(string sessionName)
+        public SessionStatusChangingEventArgs(string sessionName)
         {
             SessionName = sessionName;
         }
