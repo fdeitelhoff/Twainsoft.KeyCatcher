@@ -49,9 +49,9 @@
     <Compile Include="Keyboard\KeyboardCatcher.cs" />
     <Compile Include="Keyboard\EventsArgs\KeyStrokeEventArgs.cs" />
     <Compile Include="Keyboard\EventsArgs\SessionStartingEventArgs.cs" />
-    <Compile Include="Keyboard\EventsArgs\SessionStoppedEventArgs.cs" />
+    <Compile Include="Keyboard\EventsArgs\SessionStatusChangedEventArgs.cs" />
     <Compile Include="Keyboard\EventsArgs\SessionStartedEventArgs.cs" />
-    <Compile Include="Keyboard\Sessions\StatusChanges.cs" />
+    <Compile Include="Keyboard\Sessions\StatusChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

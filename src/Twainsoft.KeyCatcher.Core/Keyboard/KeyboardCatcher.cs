@@ -42,8 +42,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public delegate void SessionStatusChangingEventHandler(object sender, SessionStatusChangingEventArgs e);
         public event SessionStatusChangingEventHandler SessionStatusChanging;
 
-        public delegate void SessionStoppedEventHandler(object sender, SessionStoppedEventArgs e);
-        public event SessionStoppedEventHandler SessionStopped;
+        public delegate void SessionStatusChangedEventHandler(object sender, SessionStatusChangedEventArgs e);
+        public event SessionStatusChangedEventHandler SessionStatusChanged;
 
         public delegate void SessionDiscardedEventHandler(object sender, EventArgs e);
         public event SessionDiscardedEventHandler SessionDiscarded;
@@ -140,7 +140,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             ActiveKeyboardSession.Stop(sessionName);
             IsCancellationInProgress = false;
 
-            OnSessionStopped();
+            OnSessionStatusChanged(StatusChange.Saved);
         }
 
         public void DiscardSession()
@@ -189,11 +189,11 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             }
         }
 
-        private void OnSessionStopped()
+        private void OnSessionStatusChanged(StatusChange statusChange)
         {
-            if (SessionStopped != null)
+            if (SessionStatusChanged != null)
             {
-                SessionStopped(this, new SessionStoppedEventArgs(ActiveKeyboardSession));
+                SessionStatusChanged(this, new SessionStatusChangedEventArgs(ActiveKeyboardSession));
             }
 
             ActiveKeyboardSession = null;

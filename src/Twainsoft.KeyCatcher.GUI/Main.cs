@@ -16,10 +16,11 @@ namespace Twainsoft.KeyCatcher.GUI
             InitializeComponent();
 
             KeyboardCatcher = new KeyboardCatcher();
+            // TODO: Move the Starting/Started events into the status changed event? Strictly speaking those are status changes too!
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
             KeyboardCatcher.SessionStatusChanging += KeyboardCatcherOnSessionStatusChanging;
-            KeyboardCatcher.SessionStopped += KeyboardCatcherOnSessionStopped;          // TODO: SessionStatusChanged?  -> status changed (save, discard, continue). Not just stopping
+            KeyboardCatcher.SessionStatusChanged += KeyboardCatcherOnSessionStatusChanged;
             KeyboardCatcher.SessionDiscarded += KeyboardCatcherOnSessionDiscarded;
             KeyboardCatcher.SessionContinued += KeyboardCatcherOnSessionContinued;
 
@@ -30,6 +31,7 @@ namespace Twainsoft.KeyCatcher.GUI
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
             Show();
+
             WindowState = FormWindowState.Normal;
             ShowInTaskbar = true;
         }
@@ -101,11 +103,11 @@ namespace Twainsoft.KeyCatcher.GUI
             }
         }
 
-        private void KeyboardCatcherOnSessionStopped(object sender, SessionStoppedEventArgs sessionStoppedEventArgs)
+        private void KeyboardCatcherOnSessionStatusChanged(object sender, SessionStatusChangedEventArgs sessionStoppedEventArgs)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new EventHandler<SessionStoppedEventArgs>(KeyboardCatcherOnSessionStopped), sender,
+                BeginInvoke(new EventHandler<SessionStatusChangedEventArgs>(KeyboardCatcherOnSessionStatusChanged), sender,
                     sessionStoppedEventArgs);
             }
 
