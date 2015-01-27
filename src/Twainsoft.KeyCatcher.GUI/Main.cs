@@ -21,8 +21,6 @@ namespace Twainsoft.KeyCatcher.GUI
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
             KeyboardCatcher.SessionStatusChanging += KeyboardCatcherOnSessionStatusChanging;
             KeyboardCatcher.SessionStatusChanged += KeyboardCatcherOnSessionStatusChanged;
-            KeyboardCatcher.SessionDiscarded += KeyboardCatcherOnSessionDiscarded;
-            KeyboardCatcher.SessionContinued += KeyboardCatcherOnSessionContinued;
 
             // Catch all key strokes (KeyDown + KeyUp).
             KeyboardCatcher.KeyStroked += KeyboardCatcherOnKeyStroked;
@@ -103,12 +101,12 @@ namespace Twainsoft.KeyCatcher.GUI
             }
         }
 
-        private void KeyboardCatcherOnSessionStatusChanged(object sender, SessionStatusChangedEventArgs sessionStoppedEventArgs)
+        private void KeyboardCatcherOnSessionStatusChanged(object sender, SessionStatusChangedEventArgs sessionStatusChangedEventArgs)
         {
             if (InvokeRequired)
             {
                 BeginInvoke(new EventHandler<SessionStatusChangedEventArgs>(KeyboardCatcherOnSessionStatusChanged), sender,
-                    sessionStoppedEventArgs);
+                    sessionStatusChangedEventArgs);
             }
 
             sessionStartDate.Text = string.Format("Session Active Since: --");
@@ -116,7 +114,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
             notifyIcon.ShowBalloonTip(500, "Session saved",
                 string.Format("The session '{0}' was stopped and saved. The keyboard input will no longer be caught!",
-                    sessionStoppedEventArgs.KeyboardSession.Name),
+                    sessionStatusChangedEventArgs.KeyboardSession.Name),
                 ToolTipIcon.Info);
         }
 

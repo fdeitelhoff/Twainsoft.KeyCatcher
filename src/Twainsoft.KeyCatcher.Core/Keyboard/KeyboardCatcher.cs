@@ -45,12 +45,6 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public delegate void SessionStatusChangedEventHandler(object sender, SessionStatusChangedEventArgs e);
         public event SessionStatusChangedEventHandler SessionStatusChanged;
 
-        public delegate void SessionDiscardedEventHandler(object sender, EventArgs e);
-        public event SessionDiscardedEventHandler SessionDiscarded;
-
-        public delegate void SessionContinuedEventHandler(object sender, EventArgs e);
-        public event SessionContinuedEventHandler SessionContinued;
-
         public KeyboardCatcher()
         {
             KeyboardHookListener = new KeyboardHookListener(new GlobalHooker())
@@ -148,7 +142,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             ActiveKeyboardSession = null;
             IsCancellationInProgress = false;
 
-            OnSessionDiscarded();
+            OnSessionStatusChanged(StatusChange.Discarded);
         }
 
         public void ContinueSession()
@@ -156,7 +150,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             IsKeyboardInputCatched = true;
             IsCancellationInProgress = false;
 
-            OnSessionContinued();
+            OnSessionStatusChanged(StatusChange.Continued);
         }
 
         private bool OnSessionStarting()
@@ -193,25 +187,12 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             if (SessionStatusChanged != null)
             {
-                SessionStatusChanged(this, new SessionStatusChangedEventArgs(ActiveKeyboardSession));
+                SessionStatusChanged(this, new SessionStatusChangedEventArgs(ActiveKeyboardSession, statusChange));
             }
 
-            ActiveKeyboardSession = null;
-        }
-
-        private void OnSessionDiscarded()
-        {
-            if (SessionDiscarded != null)
+            if (statusChange == StatusChange.Discarded || statusChange == StatusChange.Saved)
             {
-                SessionDiscarded(this, EventArgs.Empty);
-            }
-        }
-
-        private void OnSessionContinued()
-        {
-            if (SessionContinued != null)
-            {
-                SessionContinued(this, EventArgs.Empty);
+                ActiveKeyboardSession = null;
             }
         }
     }
