@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
+using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
 using Twainsoft.KeyCatcher.GUI.Properties;
 
 namespace Twainsoft.KeyCatcher.GUI
@@ -78,7 +79,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
             if (sessionStatusChangingEventArgs == null)
             {
-                throw new ArgumentNullException("The parameter cannot be null!");
+                throw new ArgumentNullException("parameter");
             }
 
             using (var sessionData = new SessionData(sessionStatusChangingEventArgs.SessionName))
@@ -109,35 +110,31 @@ namespace Twainsoft.KeyCatcher.GUI
                     sessionStatusChangedEventArgs);
             }
 
-            sessionStartDate.Text = string.Format("Session Active Since: --");
-            keyStrokeCount.Text = string.Format("Current Key Strokes: --");
-
-            notifyIcon.ShowBalloonTip(500, "Session saved",
-                string.Format("The session '{0}' was stopped and saved. The keyboard input will no longer be caught!",
-                    sessionStatusChangedEventArgs.KeyboardSession.Name),
-                ToolTipIcon.Info);
-        }
-
-        private void KeyboardCatcherOnSessionDiscarded(object sender, EventArgs eventArgs)
-        {
-            if (InvokeRequired)
+            if (sessionStatusChangedEventArgs.StatusChange == SessionStatus.Saved)
             {
-                BeginInvoke(new EventHandler<EventArgs>(KeyboardCatcherOnSessionDiscarded), sender,
-                    eventArgs);
+                sessionStartDate.Text = string.Format("Session Active Since: --");
+                keyStrokeCount.Text = string.Format("Current Key Strokes: --");
+
+                notifyIcon.ShowBalloonTip(500, "Session saved",
+                    string.Format(
+                        "The session '{0}' was stopped and saved. The keyboard input will no longer be caught!",
+                        sessionStatusChangedEventArgs.KeyboardSession.Name),
+                    ToolTipIcon.Info);
             }
+            else if (sessionStatusChangedEventArgs.StatusChange == SessionStatus.Discarded)
+            {
+                sessionStartDate.Text = string.Format("Session Active Since: --");
+                keyStrokeCount.Text = string.Format("Current Key Strokes: --");
 
-            sessionStartDate.Text = string.Format("Session Active Since: --");
-            keyStrokeCount.Text = string.Format("Current Key Strokes: --");
-
-            notifyIcon.ShowBalloonTip(500, "Session discarded",
-                "The session was discarded and therefore deleted. The keyboard input will no longer be caught!",
-                ToolTipIcon.Info);
-        }
-
-        private void KeyboardCatcherOnSessionContinued(object sender, EventArgs eventArgs)
-        {
-            notifyIcon.ShowBalloonTip(500, "Session continued",
-                "The session was continued. All keyboard input is caught again!", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(500, "Session discarded",
+                    "The session was discarded and therefore deleted. The keyboard input will no longer be caught!",
+                    ToolTipIcon.Info);
+            }
+            else if (sessionStatusChangedEventArgs.StatusChange == SessionStatus.Continued)
+            {
+                notifyIcon.ShowBalloonTip(500, "Session continued",
+                    "The session was continued. All keyboard input is caught again!", ToolTipIcon.Info);
+            }
         }
 
         private void KeyboardCatcherOnKeyStroked(object sender, KeyStrokeEventArgs keyStrokeEventArgs)
@@ -161,6 +158,7 @@ namespace Twainsoft.KeyCatcher.GUI
         {
             if (KeyboardCatcher.IsSessionActive)
             {
+                // TODO: The cancellation is invalid due to the events. The form get's closed in the background.
                 if (MessageBox.Show(this,
                     "There's currently an active session. Would you like to close the application and end the session?",
                     "Session Active", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==

@@ -51,7 +51,7 @@
     <Compile Include="Keyboard\EventsArgs\SessionStartingEventArgs.cs" />
     <Compile Include="Keyboard\EventsArgs\SessionStatusChangedEventArgs.cs" />
     <Compile Include="Keyboard\EventsArgs\SessionStartedEventArgs.cs" />
-    <Compile Include="Keyboard\Sessions\StatusChange.cs" />
+    <Compile Include="Keyboard\Sessions\SessionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
