@@ -7,11 +7,13 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
     {
         public KeyboardSession KeyboardSession { get; private set; }
         public SessionStatus StatusChange { get; private set; }
+        public bool ExitApplication { get; private set; }
 
-        public SessionStatusChangedEventArgs(KeyboardSession keyboardSession, SessionStatus statusChange)
+        public SessionStatusChangedEventArgs(KeyboardSession keyboardSession, SessionStatus statusChange, bool exitApplication)
         {
             KeyboardSession = keyboardSession;
             StatusChange = statusChange;
+            ExitApplication = exitApplication;
         }
     }
 }

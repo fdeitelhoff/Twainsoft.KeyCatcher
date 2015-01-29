@@ -30,6 +30,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             get { return ActiveKeyboardSession == null && !IsCancellationInProgress; }
         }
 
+        private bool ExitApplication { get; set; }
+
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
         public event KeyStrokeEventHandler KeyStroked;
 
@@ -86,7 +88,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             // If we register the session stop key combination, we stop the currently active one.
             else if (IsSessionActive && !IsCancellationInProgress && StopSessionShortCut(keyEventArgs))
             {
-                CancelSession();
+                CancelSession(false);
             }
         }
 
@@ -121,8 +123,10 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             }
         }
 
-        public void CancelSession()
+        public void CancelSession(bool exitApplication)
         {
+            ExitApplication = exitApplication;
+
             IsKeyboardInputCatched = false;
             IsCancellationInProgress = true;
 
@@ -179,7 +183,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             if (SessionStatusChanging != null)
             {
-                SessionStatusChanging(this, new SessionStatusChangingEventArgs(sessionName));
+                SessionStatusChanging(this, new SessionStatusChangingEventArgs(sessionName, ExitApplication));
             }
         }
 
@@ -187,7 +191,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             if (SessionStatusChanged != null)
             {
-                SessionStatusChanged(this, new SessionStatusChangedEventArgs(ActiveKeyboardSession, statusChange));
+                SessionStatusChanged(this, new SessionStatusChangedEventArgs(ActiveKeyboardSession, statusChange, ExitApplication));
             }
 
             if (statusChange == SessionStatus.Discarded || statusChange == SessionStatus.Saved)

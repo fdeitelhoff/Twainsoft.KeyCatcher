@@ -16,10 +16,12 @@ namespace Twainsoft.KeyCatcher.GUI
             InitializeComponent();
         }
 
-        public SessionData(string name)
+        public SessionData(string name, bool exitApplication)
             : this()
         {
             sessionName.Text = name;
+
+            buttonContinue.Enabled = !exitApplication;
         }
 
         private void buttonSave_Click(object sender, System.EventArgs e)
