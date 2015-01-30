@@ -127,4 +127,10 @@
   <data name="MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Message" xml:space="preserve">
     <value>There's currently an active session. Would you like to stop it and start a new one?</value>
   </data>
+  <data name="Main_Main_FormClosing_Active_Session_Message" xml:space="preserve">
+    <value>There's currently an active session. Would you like to close the application and end the session?</value>
+  </data>
+  <data name="Main_Main_FormClosing_Session_Active_Title" xml:space="preserve">
+    <value>Session Active</value>
+  </data>
 </root>

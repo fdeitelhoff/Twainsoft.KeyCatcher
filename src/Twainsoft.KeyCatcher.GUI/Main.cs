@@ -62,7 +62,7 @@ namespace Twainsoft.KeyCatcher.GUI
             keyStrokeCount.Text = string.Format("Current Key Strokes: {0}",
                 sessionStartedEventArgs.KeyboardSession.KeyPressCount);
 
-            notifyIcon.ShowBalloonTip(500, "Session started", "A session was started. All keyboard input will be caught now!",
+            ShowBalloonTip("Session started", "A session was started. All keyboard input will be caught now!",
                 ToolTipIcon.Info);
         }
 
@@ -119,8 +119,7 @@ namespace Twainsoft.KeyCatcher.GUI
                 case SessionStatus.Saved:
                     sessionStartDate.Text = string.Format("Session Active Since: --");
                     keyStrokeCount.Text = string.Format("Current Key Strokes: --");
-                    notifyIcon.ShowBalloonTip(500, "Session saved",
-                        string.Format(
+                        ShowBalloonTip("Session saved", string.Format(
                             "The session '{0}' was stopped and saved. The keyboard input will no longer be caught!",
                             sessionStatusChangedEventArgs.KeyboardSession.Name),
                         ToolTipIcon.Info);
@@ -128,13 +127,14 @@ namespace Twainsoft.KeyCatcher.GUI
                 case SessionStatus.Discarded:
                     sessionStartDate.Text = string.Format("Session Active Since: --");
                     keyStrokeCount.Text = string.Format("Current Key Strokes: --");
-                    notifyIcon.ShowBalloonTip(500, "Session discarded",
+                    ShowBalloonTip("Session discarded",
                         "The session was discarded and therefore deleted. The keyboard input will no longer be caught!",
                         ToolTipIcon.Info);
                     break;
                 case SessionStatus.Continued:
-                    notifyIcon.ShowBalloonTip(500, "Session continued",
-                        "The session was continued. All keyboard input is caught again!", ToolTipIcon.Info);
+                        ShowBalloonTip("Session continued",
+                            "The session was continued. All keyboard input is caught again!", 
+                            ToolTipIcon.Info);
                     break;
             }
         }
@@ -143,6 +143,11 @@ namespace Twainsoft.KeyCatcher.GUI
         {
             keyStrokeCount.Text = string.Format("Current Key Strokes: {0}",
                 keyStrokeEventArgs.KeyboardSession.KeyPressCount);
+        }
+
+        private void ShowBalloonTip(string title, string message, ToolTipIcon icon)
+        {
+            notifyIcon.ShowBalloonTip(500, title, message, icon);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -160,10 +165,9 @@ namespace Twainsoft.KeyCatcher.GUI
         {
             if (KeyboardCatcher.IsSessionActive)
             {
-                // TODO: The cancellation is invalid due to the events. The form get's closed in the background.
                 if (MessageBox.Show(this,
-                    "There's currently an active session. Would you like to close the application and end the session?",
-                    "Session Active", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
+                    Resources.Main_Main_FormClosing_Active_Session_Message,
+                    Resources.Main_Main_FormClosing_Session_Active_Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
                     DialogResult.Yes)
                 {
                     KeyboardCatcher.CancelSession(true);

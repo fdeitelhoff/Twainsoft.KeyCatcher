@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace Twainsoft.KeyCatcher.GUI.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -54,6 +57,24 @@ namespace Twainsoft.KeyCatcher.GUI.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s currently an active session. Would you like to close the application and end the session?.
+        /// </summary>
+        internal static string Main_Main_FormClosing_Active_Session_Message {
+            get {
+                return ResourceManager.GetString("Main_Main_FormClosing_Active_Session_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Session Active.
+        /// </summary>
+        internal static string Main_Main_FormClosing_Session_Active_Title {
+            get {
+                return ResourceManager.GetString("Main_Main_FormClosing_Session_Active_Title", resourceCulture);
             }
         }
         

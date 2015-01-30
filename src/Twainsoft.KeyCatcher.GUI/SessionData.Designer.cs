@@ -33,6 +33,7 @@
             this.buttonContinue = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonDiscard = new System.Windows.Forms.Button();
+            this.groupBoxInfo = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // label1
@@ -53,8 +54,9 @@
             // 
             // buttonContinue
             // 
+            this.buttonContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonContinue.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonContinue.Location = new System.Drawing.Point(199, 51);
+            this.buttonContinue.Location = new System.Drawing.Point(199, 145);
             this.buttonContinue.Name = "buttonContinue";
             this.buttonContinue.Size = new System.Drawing.Size(75, 23);
             this.buttonContinue.TabIndex = 2;
@@ -64,7 +66,8 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(15, 51);
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.Location = new System.Drawing.Point(15, 145);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 3;
@@ -74,7 +77,8 @@
             // 
             // buttonDiscard
             // 
-            this.buttonDiscard.Location = new System.Drawing.Point(107, 51);
+            this.buttonDiscard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDiscard.Location = new System.Drawing.Point(107, 145);
             this.buttonDiscard.Name = "buttonDiscard";
             this.buttonDiscard.Size = new System.Drawing.Size(75, 23);
             this.buttonDiscard.TabIndex = 4;
@@ -82,13 +86,26 @@
             this.buttonDiscard.UseVisualStyleBackColor = true;
             this.buttonDiscard.Click += new System.EventHandler(this.buttonDiscard_Click);
             // 
+            // groupBoxInfo
+            // 
+            this.groupBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxInfo.Location = new System.Drawing.Point(15, 51);
+            this.groupBoxInfo.Name = "groupBoxInfo";
+            this.groupBoxInfo.Size = new System.Drawing.Size(259, 88);
+            this.groupBoxInfo.TabIndex = 5;
+            this.groupBoxInfo.TabStop = false;
+            this.groupBoxInfo.Text = "Session Info";
+            // 
             // SessionData
             // 
             this.AcceptButton = this.buttonSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonContinue;
-            this.ClientSize = new System.Drawing.Size(286, 87);
+            this.ClientSize = new System.Drawing.Size(286, 181);
+            this.Controls.Add(this.groupBoxInfo);
             this.Controls.Add(this.buttonDiscard);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonContinue);
@@ -114,5 +131,6 @@
         private System.Windows.Forms.Button buttonContinue;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonDiscard;
+        private System.Windows.Forms.GroupBox groupBoxInfo;
     }
 }
