@@ -183,7 +183,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             if (SessionStatusChanging != null)
             {
-                SessionStatusChanging(this, new SessionStatusChangingEventArgs(sessionName, ExitApplication));
+                SessionStatusChanging(this, new SessionStatusChangingEventArgs(sessionName, ExitApplication, ActiveKeyboardSession));
             }
         }
 

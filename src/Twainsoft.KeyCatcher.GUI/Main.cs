@@ -17,7 +17,6 @@ namespace Twainsoft.KeyCatcher.GUI
             InitializeComponent();
 
             KeyboardCatcher = new KeyboardCatcher();
-            // TODO: Move the Starting/Started events into the status changed event? Strictly speaking those are status changes too!
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
             KeyboardCatcher.SessionStatusChanging += KeyboardCatcherOnSessionStatusChanging;
@@ -82,7 +81,8 @@ namespace Twainsoft.KeyCatcher.GUI
                 throw new ArgumentNullException("parameter");
             }
 
-            using (var sessionData = new SessionData(eventArgs.SessionName, eventArgs.ExitApplication))
+            using (var sessionData = new SessionData(eventArgs.SessionName, eventArgs.ExitApplication,
+                eventArgs.KeyboardSession))
             {
                 sessionData.BringToFront();
                 sessionData.ShowDialog();
@@ -152,7 +152,8 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // TODO: I don't exactly know if thats needed. Test it out later.
+            // Sometimes the NotifyIcon still appears within the system tray after the application was closed.
+            // Strange behavior and this seems to fix it.
             if (notifyIcon != null)
             {
                 notifyIcon.Visible = false;

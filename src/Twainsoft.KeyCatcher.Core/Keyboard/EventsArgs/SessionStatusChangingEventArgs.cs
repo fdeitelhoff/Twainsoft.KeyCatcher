@@ -1,4 +1,5 @@
 ﻿using System;
+using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
 {
@@ -6,11 +7,13 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
     {
         public string SessionName { get; private set; }
         public bool ExitApplication { get; private set; }
+        public KeyboardSession KeyboardSession { get; private set; }
 
-        public SessionStatusChangingEventArgs(string sessionName, bool exitApplication)
+        public SessionStatusChangingEventArgs(string sessionName, bool exitApplication, KeyboardSession keyboardSession)
         {
             SessionName = sessionName;
             ExitApplication = exitApplication;
+            KeyboardSession = keyboardSession;
         }
     }
 }

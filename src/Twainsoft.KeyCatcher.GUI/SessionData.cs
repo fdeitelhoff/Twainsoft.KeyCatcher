@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
 
 namespace Twainsoft.KeyCatcher.GUI
 {
@@ -16,10 +17,12 @@ namespace Twainsoft.KeyCatcher.GUI
             InitializeComponent();
         }
 
-        public SessionData(string name, bool exitApplication)
+        public SessionData(string name, bool exitApplication, KeyboardSession keyboardSession)
             : this()
         {
             sessionName.Text = name;
+            startDateTime.Text = string.Format(startDateTime.Text, keyboardSession.Start);
+            overallKeystrokes.Text = string.Format(overallKeystrokes.Text, keyboardSession.KeyPressCount);
 
             buttonContinue.Enabled = !exitApplication;
         }
