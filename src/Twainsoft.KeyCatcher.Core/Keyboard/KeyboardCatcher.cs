@@ -85,10 +85,15 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
                     OnSessionStarted();
                 }
             }
-            // If we register the session stop key combination, we stop the currently active one.
+            // If we register the session stop key combination, we stop the currently active session.
             else if (IsSessionActive && !IsCancellationInProgress && StopSessionShortCut(keyEventArgs))
             {
                 CancelSession(false);
+            }
+            // IF we register the session discard key combination, we discard the currently active session.
+            else if (IsSessionActive && DiscardSessionShortCut(keyEventArgs))
+            {
+                DiscardSession();
             }
         }
 
@@ -105,10 +110,15 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private bool StartSessionShortCut(KeyEventArgs keyEventArgs) 
         {
-            return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.K;
+            return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.J;
         }
 
         private bool StopSessionShortCut(KeyEventArgs keyEventArgs)
+        {
+            return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.K;
+        }
+
+        private bool DiscardSessionShortCut(KeyEventArgs keyEventArgs)
         {
             return keyEventArgs.Shift && keyEventArgs.Control && keyEventArgs.KeyCode == Keys.L;
         }

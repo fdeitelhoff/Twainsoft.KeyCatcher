@@ -5,7 +5,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard.Sessions
 {
     public class KeyboardSession
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
 
