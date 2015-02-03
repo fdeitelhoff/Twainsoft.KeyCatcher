@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
@@ -142,9 +143,19 @@ namespace Twainsoft.KeyCatcher.GUI
                 keyStrokeEventArgs.KeyboardSession.KeyPressCount);
         }
 
+        private delegate void ShowBallTipCallback(string title, string message, ToolTipIcon icon);
+
         private void ShowBalloonTip(string title, string message, ToolTipIcon icon)
         {
-            notifyIcon.ShowBalloonTip(500, title, message, icon);
+            //if (InvokeRequired)
+            //{
+            //    Invoke(new ShowBallTipCallback(ShowBalloonTip), title, message, icon);
+            //}
+
+            //if (GetForegroundWindow() != Handle)
+            //{
+                notifyIcon.ShowBalloonTip(500, title, message, icon);
+            //}
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -203,5 +214,8 @@ namespace Twainsoft.KeyCatcher.GUI
             sessionStartDate.Text = "Session Active Since: --";
             keyStrokeCount.Text = "Current Key Strokes: --";
         }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetForegroundWindow();
     }
 }
