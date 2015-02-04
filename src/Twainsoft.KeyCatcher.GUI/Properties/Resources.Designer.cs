@@ -61,6 +61,24 @@ namespace Twainsoft.KeyCatcher.GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Key Strokes: --.
+        /// </summary>
+        internal static string Main_LabelKeyStrokeCount_Current_Key_Strokes {
+            get {
+                return ResourceManager.GetString("Main_LabelKeyStrokeCount_Current_Key_Strokes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Session Active Since: --.
+        /// </summary>
+        internal static string Main_LabelStartDate_Session_Active_Since {
+            get {
+                return ResourceManager.GetString("Main_LabelStartDate_Session_Active_Since", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There&apos;s currently an active session. Would you like to close the application and end the session?.
         /// </summary>
         internal static string Main_Main_FormClosing_Active_Session_Message {

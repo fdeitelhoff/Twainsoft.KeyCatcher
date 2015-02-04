@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
@@ -143,19 +142,9 @@ namespace Twainsoft.KeyCatcher.GUI
                 keyStrokeEventArgs.KeyboardSession.KeyPressCount);
         }
 
-        private delegate void ShowBallTipCallback(string title, string message, ToolTipIcon icon);
-
         private void ShowBalloonTip(string title, string message, ToolTipIcon icon)
         {
-            //if (InvokeRequired)
-            //{
-            //    Invoke(new ShowBallTipCallback(ShowBalloonTip), title, message, icon);
-            //}
-
-            //if (GetForegroundWindow() != Handle)
-            //{
-                notifyIcon.ShowBalloonTip(500, title, message, icon);
-            //}
+            notifyIcon.ShowBalloonTip(500, title, message, icon);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -176,7 +165,8 @@ namespace Twainsoft.KeyCatcher.GUI
             {
                 if (MessageBox.Show(this,
                     Resources.Main_Main_FormClosing_Active_Session_Message,
-                    Resources.Main_Main_FormClosing_Session_Active_Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
+                    Resources.Main_Main_FormClosing_Session_Active_Title,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) ==
                     DialogResult.Yes)
                 {
                     KeyboardCatcher.CancelSession(true);
@@ -211,11 +201,8 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void ClearSessionInfo()
         {
-            sessionStartDate.Text = "Session Active Since: --";
-            keyStrokeCount.Text = "Current Key Strokes: --";
+            sessionStartDate.Text = Resources.Main_LabelStartDate_Session_Active_Since;
+            keyStrokeCount.Text = Resources.Main_LabelKeyStrokeCount_Current_Key_Strokes;
         }
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        private static extern IntPtr GetForegroundWindow();
     }
 }
