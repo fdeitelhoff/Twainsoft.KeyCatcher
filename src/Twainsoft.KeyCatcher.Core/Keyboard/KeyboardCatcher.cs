@@ -25,11 +25,6 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             get { return ActiveKeyboardSession != null && IsKeyboardInputCatched; }
         }
 
-        private bool IsSessionStartable
-        {
-            get { return ActiveKeyboardSession == null && !IsCancellationInProgress; }
-        }
-
         private bool ExitApplication { get; set; }
 
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
@@ -71,8 +66,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private void KeyboardHookListenerOnKeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            // If we register the session start key combination, we start a new one.
-            if (StartSessionShortCut(keyEventArgs))
+            // If we register the session start key combination, and there's currently session cancellation (session data window) in progress, we maybe start a new one.
+            if (!IsCancellationInProgress && StartSessionShortCut(keyEventArgs))
             {
                 // Ask via event if the current active session should be stopped first if we detect one.
                 if (!IsSessionActive || OnSessionStarting())
@@ -90,7 +85,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
             {
                 CancelSession(false);
             }
-            // IF we register the session discard key combination, we discard the currently active session.
+            // If we register the session discard key combination, we discard the currently active session.
             else if (IsSessionActive && DiscardSessionShortCut(keyEventArgs))
             {
                 DiscardSession();
