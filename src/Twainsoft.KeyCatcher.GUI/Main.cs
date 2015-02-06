@@ -3,7 +3,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
-using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
 using Twainsoft.KeyCatcher.GUI.Properties;
 
 namespace Twainsoft.KeyCatcher.GUI

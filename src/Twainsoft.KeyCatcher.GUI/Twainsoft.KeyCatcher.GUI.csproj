@@ -92,6 +92,10 @@
     <None Include="Resources\tray.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Twainsoft.KeyCatcher.Core.Model\Twainsoft.KeyCatcher.Core.Model.csproj">
+      <Project>{AA3265B6-2FA3-46EB-B299-0BEEE513FAA4}</Project>
+      <Name>Twainsoft.KeyCatcher.Core.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj">
       <Project>{53cc3e68-f108-40e8-8f48-eaefc41e4a2e}</Project>
       <Name>Twainsoft.KeyCatcher.Core</Name>

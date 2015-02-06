@@ -1,4 +1,4 @@
-﻿namespace Twainsoft.KeyCatcher.Core.Keyboard.Sessions
+﻿namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
 {
     public enum SessionStatus
     {

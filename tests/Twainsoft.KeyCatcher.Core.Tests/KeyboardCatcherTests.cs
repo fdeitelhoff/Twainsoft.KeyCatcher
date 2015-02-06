@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Twainsoft.KeyCatcher.Core.Keyboard;
 
 namespace Twainsoft.KeyCatcher.Core.Tests
 {

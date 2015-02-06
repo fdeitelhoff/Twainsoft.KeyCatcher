@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
+using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
 namespace Twainsoft.KeyCatcher.GUI
 {

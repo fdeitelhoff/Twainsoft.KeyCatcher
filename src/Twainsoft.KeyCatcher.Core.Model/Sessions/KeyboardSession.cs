@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Twainsoft.KeyCatcher.Core.Keyboard.Sessions
+namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 {
     public class KeyboardSession
     {

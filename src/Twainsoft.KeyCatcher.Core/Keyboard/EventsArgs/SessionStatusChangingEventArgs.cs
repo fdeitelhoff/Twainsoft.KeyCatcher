@@ -1,5 +1,5 @@
 ﻿using System;
-using Twainsoft.KeyCatcher.Core.Keyboard.Sessions;
+using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
 {
