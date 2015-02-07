@@ -6,6 +6,7 @@ using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
 using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
+using Twainsoft.KeyCatcher.DB.Firebird;
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard
 {
@@ -132,16 +133,18 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             ExitApplication = exitApplication;
 
-            IsKeyboardInputCatched = false;
-            IsCancellationInProgress = true;
-
             OnSessionStatusChanging("New Session Name");
         }
 
         public void SaveSession(string sessionName)
         {
             ActiveKeyboardSession.Stop(sessionName);
-            IsCancellationInProgress = false;
+
+            using (var ctx = new KeyboardSessionContext())
+            {
+                ctx.KeyboardSessions.Add(ActiveKeyboardSession);
+                ctx.SaveChanges();
+            }
 
             OnSessionStatusChanged(SessionStatus.Saved);
         }
@@ -149,7 +152,6 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void DiscardSession()
         {
             ActiveKeyboardSession = null;
-            IsCancellationInProgress = false;
 
             OnSessionStatusChanged(SessionStatus.Discarded);
         }
@@ -157,7 +159,6 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public void ContinueSession()
         {
             IsKeyboardInputCatched = true;
-            IsCancellationInProgress = false;
 
             OnSessionStatusChanged(SessionStatus.Continued);
         }
@@ -186,6 +187,9 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private void OnSessionStatusChanging(string sessionName)
         {
+            IsKeyboardInputCatched = false;
+            IsCancellationInProgress = true;
+
             if (SessionStatusChanging != null)
             {
                 SessionStatusChanging(this, new SessionStatusChangingEventArgs(sessionName, ExitApplication, ActiveKeyboardSession));
@@ -194,6 +198,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private void OnSessionStatusChanged(SessionStatus statusChange)
         {
+            IsCancellationInProgress = false;
+
             if (SessionStatusChanged != null)
             {
                 SessionStatusChanged(this, new SessionStatusChangedEventArgs(ActiveKeyboardSession, statusChange, ExitApplication));
