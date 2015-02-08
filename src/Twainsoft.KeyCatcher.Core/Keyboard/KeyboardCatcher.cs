@@ -140,11 +140,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             ActiveKeyboardSession.Stop(sessionName);
 
-            using (var ctx = new KeyboardSessionContext())
-            {
-                ctx.KeyboardSessions.Add(ActiveKeyboardSession);
-                ctx.SaveChanges();
-            }
+            new KeyboardSessions().Add(ActiveKeyboardSession);
 
             OnSessionStatusChanged(SessionStatus.Saved);
         }
