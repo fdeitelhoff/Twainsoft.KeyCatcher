@@ -7,11 +7,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
     {
         public void Create(KeyboardSession keyboardSession)
         {
-            using (var ctx = new KeyboardSessionContext())
-            {
-                ctx.KeyboardSessions.Add(keyboardSession);
-                ctx.SaveChanges();
-            }
+            
         }
     }
 }
