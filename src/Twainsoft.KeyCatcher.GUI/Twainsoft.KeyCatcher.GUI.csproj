@@ -104,6 +104,10 @@
       <Project>{4ed852c6-e320-4004-a71c-282cf0e238d7}</Project>
       <Name>Twainsoft.KeyCatcher.DarkLayout</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Twainsoft.KeyCatcher.DB.Firebird\Twainsoft.KeyCatcher.DB.Firebird.csproj">
+      <Project>{9bb16a82-1b47-47a0-adb1-0060e274cc43}</Project>
+      <Name>Twainsoft.KeyCatcher.DB.Firebird</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

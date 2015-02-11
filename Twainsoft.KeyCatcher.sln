@@ -25,6 +25,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{DC46BDBB-3DFD-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.DB.Firebird", "src\Twainsoft.KeyCatcher.DB.Firebird\Twainsoft.KeyCatcher.DB.Firebird.csproj", "{9BB16A82-1B47-47A0-ADB1-0060E274CC43}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{589A051E-361A-4062-9633-386E55F0BFF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FirebirdSql", "FirebirdSql", "{591A809C-AD64-4C61-83F1-F704F93C2EC4}"
+	ProjectSection(SolutionItems) = preProject
+		lib\FirebirdSqlEmbedded\fbembed.dll = lib\FirebirdSqlEmbedded\fbembed.dll
+		lib\FirebirdSqlEmbedded\ib_util.dll = lib\FirebirdSqlEmbedded\ib_util.dll
+		lib\FirebirdSqlEmbedded\icudt30.dll = lib\FirebirdSqlEmbedded\icudt30.dll
+		lib\FirebirdSqlEmbedded\icuin30.dll = lib\FirebirdSqlEmbedded\icuin30.dll
+		lib\FirebirdSqlEmbedded\icuuc30.dll = lib\FirebirdSqlEmbedded\icuuc30.dll
+		lib\FirebirdSqlEmbedded\msvcp80.dll = lib\FirebirdSqlEmbedded\msvcp80.dll
+		lib\FirebirdSqlEmbedded\msvcr80.dll = lib\FirebirdSqlEmbedded\msvcr80.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +79,6 @@ Global
 		{21258ED1-053A-456C-A958-AA70F26FBEAD} = {0A91B7C7-4913-4E8C-895B-41CB7E7B9BF5}
 		{AA3265B6-2FA3-46EB-B299-0BEEE513FAA4} = {573D818A-8FD3-4C7C-AB17-EB128F57B827}
 		{9BB16A82-1B47-47A0-ADB1-0060E274CC43} = {DC46BDBB-3DFD-4131-A5B0-724088A5E120}
+		{591A809C-AD64-4C61-83F1-F704F93C2EC4} = {589A051E-361A-4062-9633-386E55F0BFF6}
 	EndGlobalSection
 EndGlobal
