@@ -38,6 +38,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FirebirdSql", "FirebirdSql"
 		lib\FirebirdSqlEmbedded\msvcr80.dll = lib\FirebirdSqlEmbedded\msvcr80.dll
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{35A83B9D-1221-44FE-9A80-4ECC52AD6A3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.KeyCatcher.App", "src\Twainsoft.KeyCatcher.App\Twainsoft.KeyCatcher.App.csproj", "{BB5E3A74-35AC-43C5-A05E-0B04934BB5C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +72,10 @@ Global
 		{9BB16A82-1B47-47A0-ADB1-0060E274CC43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BB16A82-1B47-47A0-ADB1-0060E274CC43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BB16A82-1B47-47A0-ADB1-0060E274CC43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5E3A74-35AC-43C5-A05E-0B04934BB5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5E3A74-35AC-43C5-A05E-0B04934BB5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5E3A74-35AC-43C5-A05E-0B04934BB5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5E3A74-35AC-43C5-A05E-0B04934BB5C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +88,6 @@ Global
 		{AA3265B6-2FA3-46EB-B299-0BEEE513FAA4} = {573D818A-8FD3-4C7C-AB17-EB128F57B827}
 		{9BB16A82-1B47-47A0-ADB1-0060E274CC43} = {DC46BDBB-3DFD-4131-A5B0-724088A5E120}
 		{591A809C-AD64-4C61-83F1-F704F93C2EC4} = {589A051E-361A-4062-9633-386E55F0BFF6}
+		{BB5E3A74-35AC-43C5-A05E-0B04934BB5C7} = {35A83B9D-1221-44FE-9A80-4ECC52AD6A3D}
 	EndGlobalSection
 EndGlobal

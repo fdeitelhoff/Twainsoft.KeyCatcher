@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
-namespace Twainsoft.KeyCatcher.GUI
+namespace Twainsoft.KeyCatcher.GUI.Session
 {
     public partial class SessionData : Form
     {

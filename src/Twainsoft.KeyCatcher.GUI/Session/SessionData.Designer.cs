@@ -1,4 +1,4 @@
-﻿namespace Twainsoft.KeyCatcher.GUI
+﻿namespace Twainsoft.KeyCatcher.GUI.Session
 {
     partial class SessionData
     {

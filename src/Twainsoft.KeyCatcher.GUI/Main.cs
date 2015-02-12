@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
 using Twainsoft.KeyCatcher.GUI.Properties;
+using Twainsoft.KeyCatcher.GUI.Session;
 
 namespace Twainsoft.KeyCatcher.GUI
 {
