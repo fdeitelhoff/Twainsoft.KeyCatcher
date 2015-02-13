@@ -6,6 +6,11 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 {
     public class FirebirdSql : IPersistence
     {
+        public FirebirdSql()
+        {
+            
+        }
+
         public void CreateDatabase(string path, string file)
         {
             // Check if the path and or file already exists.
@@ -20,7 +25,14 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             {
                 FbConnection.CreateDatabase(string.Format("ServerType=1;User=SYSDBA;" +
                     "Password=test;Dialect=3;Database={0}", databaseFile));
+
+                CreateDatabaseSchema();
             }
+        }
+
+        private void CreateDatabaseSchema()
+        {
+            
         }
     }
 }

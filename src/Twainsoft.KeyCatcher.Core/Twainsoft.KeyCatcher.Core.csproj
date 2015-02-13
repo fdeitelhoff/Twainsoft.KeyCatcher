@@ -43,13 +43,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Keyboard\EventsArgs\SessionStatusChangingEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStatusChangingEventArgs.cs" />
     <Compile Include="Keyboard\KeyboardCatcher.cs" />
-    <Compile Include="Keyboard\EventsArgs\KeyStrokeEventArgs.cs" />
-    <Compile Include="Keyboard\EventsArgs\SessionStartingEventArgs.cs" />
-    <Compile Include="Keyboard\EventsArgs\SessionStatusChangedEventArgs.cs" />
-    <Compile Include="Keyboard\EventsArgs\SessionStartedEventArgs.cs" />
-    <Compile Include="Keyboard\EventsArgs\SessionStatus.cs" />
+    <Compile Include="Keyboard\Events\KeyStrokeEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStartingEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStatusChangedEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStartedEventArgs.cs" />
+    <Compile Include="Keyboard\Events\SessionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

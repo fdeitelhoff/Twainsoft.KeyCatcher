@@ -4,13 +4,15 @@ using System.Threading;
 using System.Windows.Forms;
 using MouseKeyboardActivityMonitor;
 using MouseKeyboardActivityMonitor.WinApi;
-using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
+using Twainsoft.KeyCatcher.Core.Keyboard.Events;
+using Twainsoft.KeyCatcher.Core.Model.Catcher;
+using Twainsoft.KeyCatcher.Core.Model.Repositories;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
 using Twainsoft.KeyCatcher.DB.Firebird;
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard
 {
-    public sealed class KeyboardCatcher
+    public sealed class KeyboardCatcher : IKeyboardCatcher
     {
         private KeyboardHookListener KeyboardHookListener { get; set; }
 
@@ -28,6 +30,8 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
 
         private bool ExitApplication { get; set; }
 
+        private IKeyboardSessions KeyboardSessions { get; set; }
+
         public delegate void KeyStrokeEventHandler(object sender, KeyStrokeEventArgs e);
         public event KeyStrokeEventHandler KeyStroked;
 
@@ -43,8 +47,10 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         public delegate void SessionStatusChangedEventHandler(object sender, SessionStatusChangedEventArgs e);
         public event SessionStatusChangedEventHandler SessionStatusChanged;
 
-        public KeyboardCatcher()
+        public KeyboardCatcher(IKeyboardSessions keyboardSessions)
         {
+            KeyboardSessions = keyboardSessions;
+
             KeyboardHookListener = new KeyboardHookListener(new GlobalHooker())
             {
                 Enabled = true
@@ -140,7 +146,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             ActiveKeyboardSession.Stop(sessionName);
 
-            new KeyboardSessions().Create(ActiveKeyboardSession);
+            KeyboardSessions.Create(ActiveKeyboardSession);
 
             OnSessionStatusChanged(SessionStatus.Saved);
         }

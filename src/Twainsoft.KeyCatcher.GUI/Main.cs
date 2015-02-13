@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Ninject;
 using Twainsoft.KeyCatcher.Core.Keyboard;
-using Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs;
+using Twainsoft.KeyCatcher.Core.Keyboard.Events;
 using Twainsoft.KeyCatcher.GUI.Properties;
 using Twainsoft.KeyCatcher.GUI.Session;
 
@@ -10,13 +11,16 @@ namespace Twainsoft.KeyCatcher.GUI
 {
     public partial class Main : Form
     {
+        private StandardKernel Kernel { get; set; }
+
         private KeyboardCatcher KeyboardCatcher { get; set; }
 
-        public Main()
+        public Main(KeyboardCatcher keyboardCatcher)
         {
             InitializeComponent();
 
-            KeyboardCatcher = new KeyboardCatcher();
+            KeyboardCatcher = keyboardCatcher;
+
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
             KeyboardCatcher.SessionStatusChanging += KeyboardCatcherOnSessionStatusChanging;
@@ -79,6 +83,7 @@ namespace Twainsoft.KeyCatcher.GUI
                 throw new ArgumentNullException("parameter");
             }
 
+            // TODO: Maybe move the creation to Ninject? Could solve the thread problem?!?
             using (var sessionData = new SessionData(eventArgs.SessionName, eventArgs.ExitApplication,
                 eventArgs.KeyboardSession))
             {

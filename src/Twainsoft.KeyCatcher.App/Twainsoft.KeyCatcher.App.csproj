@@ -35,6 +35,9 @@
     <StartupObject>Twainsoft.KeyCatcher.App.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +61,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +79,10 @@
     <ProjectReference Include="..\Twainsoft.KeyCatcher.Core.Model\Twainsoft.KeyCatcher.Core.Model.csproj">
       <Project>{AA3265B6-2FA3-46EB-B299-0BEEE513FAA4}</Project>
       <Name>Twainsoft.KeyCatcher.Core.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Twainsoft.KeyCatcher.Core\Twainsoft.KeyCatcher.Core.csproj">
+      <Project>{53CC3E68-F108-40E8-8F48-EAEFC41E4A2E}</Project>
+      <Name>Twainsoft.KeyCatcher.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Twainsoft.KeyCatcher.DB.Firebird\Twainsoft.KeyCatcher.DB.Firebird.csproj">
       <Project>{9BB16A82-1B47-47A0-ADB1-0060E274CC43}</Project>

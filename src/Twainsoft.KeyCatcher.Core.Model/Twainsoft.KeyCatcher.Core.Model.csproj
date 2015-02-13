@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catcher\IKeyboardCatcher.cs" />
     <Compile Include="Persistence\IPersistence.cs" />
     <Compile Include="Repositories\IKeyboardSessions.cs" />
     <Compile Include="Sessions\KeyboardSession.cs" />

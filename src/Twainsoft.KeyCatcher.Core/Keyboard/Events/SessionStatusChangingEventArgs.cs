@@ -1,7 +1,7 @@
 ﻿using System;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
-namespace Twainsoft.KeyCatcher.Core.Keyboard.EventsArgs
+namespace Twainsoft.KeyCatcher.Core.Keyboard.Events
 {
     public class SessionStatusChangingEventArgs : EventArgs
     {
