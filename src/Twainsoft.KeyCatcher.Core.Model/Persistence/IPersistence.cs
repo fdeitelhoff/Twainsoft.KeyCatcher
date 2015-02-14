@@ -2,6 +2,6 @@
 {
     public interface IPersistence
     {
-        void CreateDatabase(string path, string file);
+        void CreateDatabase();
     }
 }

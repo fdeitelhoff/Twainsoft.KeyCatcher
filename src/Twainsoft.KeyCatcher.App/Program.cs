@@ -23,7 +23,7 @@ namespace Twainsoft.KeyCatcher.App
 
             // If there's no database we need one first.
             var firebirdSql = kernel.Get<IPersistence>();
-            firebirdSql.CreateDatabase("Data", "Twainsoft.KeyCatcher.fdb");
+            firebirdSql.CreateDatabase();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
