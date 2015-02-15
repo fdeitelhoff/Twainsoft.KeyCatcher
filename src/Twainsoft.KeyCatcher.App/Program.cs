@@ -23,7 +23,7 @@ namespace Twainsoft.KeyCatcher.App
 
             // If there's no database we need one first.
             var firebirdSql = kernel.Get<IPersistence>();
-            firebirdSql.CreateDatabase();
+            firebirdSql.CopyDatabaseTemplate();                                     // TODO: Maybe move this into the constructor to call the method the first time automatically?
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

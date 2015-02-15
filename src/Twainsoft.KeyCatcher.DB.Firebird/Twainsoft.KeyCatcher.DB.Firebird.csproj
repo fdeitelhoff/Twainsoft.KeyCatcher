@@ -45,16 +45,28 @@
     <Compile Include="FirebirdSql.cs" />
     <Compile Include="KeyboardSessions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Resource Include="Template\Database.Template.fdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Twainsoft.KeyCatcher.Core.Model\Twainsoft.KeyCatcher.Core.Model.csproj">
       <Project>{AA3265B6-2FA3-46EB-B299-0BEEE513FAA4}</Project>
       <Name>Twainsoft.KeyCatcher.Core.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

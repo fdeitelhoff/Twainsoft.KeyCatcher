@@ -2,6 +2,6 @@
 {
     public interface IPersistence
     {
-        void CreateDatabase();
+        void CopyDatabaseTemplate();
     }
 }

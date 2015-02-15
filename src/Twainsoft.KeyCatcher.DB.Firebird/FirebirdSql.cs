@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using FirebirdSql.Data.FirebirdClient;
 using Twainsoft.KeyCatcher.Core.Model.Persistence;
+using Twainsoft.KeyCatcher.DB.Firebird.Properties;
 
 namespace Twainsoft.KeyCatcher.DB.Firebird
 {
@@ -26,7 +27,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             };
         }
 
-        public void CreateDatabase()
+        public void CopyDatabaseTemplate()
         {
             // Check if the path and or file already exists.
             if (!Directory.Exists(DatabasePath))
@@ -38,15 +39,8 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 
             if (!File.Exists(databaseFile))
             {
-                FbConnection.CreateDatabase(ConnectionBuilder.ConnectionString);
-
-                CreateDatabaseSchema();
+                File.WriteAllBytes(Path.Combine(DatabasePath, DatabaseFile), Resources.Database_Template);
             }
-        }
-
-        private void CreateDatabaseSchema()
-        {
-            
         }
     }
 }
