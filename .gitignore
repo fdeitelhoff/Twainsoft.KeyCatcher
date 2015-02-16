@@ -184,3 +184,4 @@ localpackages/
 !.paket/paket.bootstrapper.exe
 docs/content/license.md
 docs/content/release-notes.md
+/src/Twainsoft.KeyCatcher.DB.Firebird/Template/Logs

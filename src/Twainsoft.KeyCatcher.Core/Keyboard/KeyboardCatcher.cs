@@ -8,7 +8,6 @@ using Twainsoft.KeyCatcher.Core.Keyboard.Events;
 using Twainsoft.KeyCatcher.Core.Model.Catcher;
 using Twainsoft.KeyCatcher.Core.Model.Repositories;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
-using Twainsoft.KeyCatcher.DB.Firebird;
 
 namespace Twainsoft.KeyCatcher.Core.Keyboard
 {

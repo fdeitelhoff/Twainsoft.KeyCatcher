@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using Ninject;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.Events;
 using Twainsoft.KeyCatcher.GUI.Properties;
@@ -11,8 +10,6 @@ namespace Twainsoft.KeyCatcher.GUI
 {
     public partial class Main : Form
     {
-        private StandardKernel Kernel { get; set; }
-
         private KeyboardCatcher KeyboardCatcher { get; set; }
 
         public Main(KeyboardCatcher keyboardCatcher)
