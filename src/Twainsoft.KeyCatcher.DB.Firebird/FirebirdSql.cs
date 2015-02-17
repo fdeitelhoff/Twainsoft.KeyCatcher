@@ -10,7 +10,12 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
         private string DatabasePath { get; set; }
         private string DatabaseFile { get; set; }
 
-        public FbConnectionStringBuilder ConnectionBuilder { get; private set; }
+        private FbConnectionStringBuilder ConnectionBuilder { get; set; }
+
+        public string ConnectionString
+        {
+            get { return ConnectionBuilder.ConnectionString; }
+        }
 
         public FirebirdSql()
         {

@@ -1,4 +1,5 @@
-﻿using Twainsoft.KeyCatcher.Core.Model.Persistence;
+﻿using FirebirdSql.Data.FirebirdClient;
+using Twainsoft.KeyCatcher.Core.Model.Persistence;
 using Twainsoft.KeyCatcher.Core.Model.Repositories;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
@@ -13,8 +14,15 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             Persistence = persistence;
         }
 
-        public void Create(KeyboardSession keyboardSession)
+        public void Save(KeyboardSession keyboardSession)
         {
+            var sql = "";
+
+            using (var saveCommand = new FbCommand("", 
+                new FbConnection(Persistence.ConnectionString)))
+            {
+                
+            }
             
         }
     }

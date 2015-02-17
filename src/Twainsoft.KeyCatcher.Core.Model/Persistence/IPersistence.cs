@@ -2,6 +2,8 @@
 {
     public interface IPersistence
     {
+        string ConnectionString { get; }
+
         void CopyDatabaseTemplate();
     }
 }
