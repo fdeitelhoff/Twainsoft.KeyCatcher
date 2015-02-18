@@ -145,7 +145,7 @@ namespace Twainsoft.KeyCatcher.Core.Keyboard
         {
             ActiveKeyboardSession.Stop(sessionName);
 
-            KeyboardSessions.Create(ActiveKeyboardSession);
+            KeyboardSessions.Save(ActiveKeyboardSession);
 
             OnSessionStatusChanged(SessionStatus.Saved);
         }
