@@ -16,7 +16,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 
         public void Save(KeyboardSession keyboardSession)
         {
-            var sql = "INSERT INTO Sessions () VALUES ()";
+            var sql = "INSERT INTO Sessions (SID, Name, Start, End, Keys) VALUES ()";
 
             using (var saveCommand = new FbCommand("", 
                 new FbConnection(Persistence.ConnectionString)))
