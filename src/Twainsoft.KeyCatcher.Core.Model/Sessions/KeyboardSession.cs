@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 {
@@ -30,6 +31,11 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
         {
             Name = sessionName;
             End = DateTime.Now;
+        }
+
+        public string GetKeys()
+        {
+            return string.Join("", PressedKeys.ToArray());
         }
     }
 }
