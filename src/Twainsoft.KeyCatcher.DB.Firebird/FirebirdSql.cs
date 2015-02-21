@@ -28,6 +28,8 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
                 UserID = "Twainsoft.KeyCatcher",
                 Password = "test",
                 Dialect = 3,
+                Pooling = true,
+                Role = "Admin",
                 Database = Path.Combine(DatabasePath, DatabaseFile)
             };
         }

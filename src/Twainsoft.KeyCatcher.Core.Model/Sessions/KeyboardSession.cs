@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 {
@@ -35,7 +34,7 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 
         public string GetKeys()
         {
-            return string.Join("", PressedKeys.ToArray());
+            return string.Join("|", PressedKeys.ToArray());
         }
     }
 }
