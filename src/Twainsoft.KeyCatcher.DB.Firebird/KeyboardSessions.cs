@@ -27,6 +27,9 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
                 saveCommand.Parameters.Add("@Name", keyboardSession.Name);
                 saveCommand.Parameters.Add("@StartDate", keyboardSession.Start);
                 saveCommand.Parameters.Add("@EndDate", keyboardSession.End);
+                saveCommand.Parameters.Add("@InputCulture", keyboardSession.InputLanguage.Culture);
+                saveCommand.Parameters.Add("@InputLanguage", keyboardSession.InputLanguage.LayoutName);
+                saveCommand.Parameters.Add("@KeyCount", keyboardSession.KeyPressCount);
                 saveCommand.Parameters.Add("@Keys", keyboardSession.GetKeys());
 
                 saveCommand.Connection.Open();
