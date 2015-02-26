@@ -120,8 +120,9 @@ namespace Twainsoft.KeyCatcher.GUI
                         ClearSessionInfo();
 
                         ShowBalloonTip("Session saved", string.Format(
-                            "The session '{0}' was stopped and saved. The keyboard input will no longer be caught!",
-                            sessionStatusChangedEventArgs.KeyboardSession.Name), ToolTipIcon.Info);
+                            "The session '{0}' with {1} keystrokes was stopped and saved. The keyboard input will no longer be caught!",
+                            sessionStatusChangedEventArgs.KeyboardSession.Name, sessionStatusChangedEventArgs.KeyboardSession.KeyPressCount),
+                            ToolTipIcon.Info);
                     break;
                 case SessionStatus.Discarded:
                         ClearSessionInfo();

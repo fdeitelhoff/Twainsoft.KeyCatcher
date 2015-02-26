@@ -38,8 +38,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keyStrokeCount = new System.Windows.Forms.Label();
             this.sessionStartDate = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.activeSession = new System.Windows.Forms.GroupBox();
             this.notifyIconContextMenu.SuspendLayout();
+            this.activeSession.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -91,9 +92,9 @@
             // 
             // keyStrokeCount
             // 
-            this.keyStrokeCount.Location = new System.Drawing.Point(12, 101);
+            this.keyStrokeCount.Location = new System.Drawing.Point(6, 46);
             this.keyStrokeCount.Name = "keyStrokeCount";
-            this.keyStrokeCount.Size = new System.Drawing.Size(330, 13);
+            this.keyStrokeCount.Size = new System.Drawing.Size(318, 19);
             this.keyStrokeCount.TabIndex = 0;
             this.keyStrokeCount.Text = "Current Key Strokes: --";
             this.keyStrokeCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,29 +102,30 @@
             // sessionStartDate
             // 
             this.sessionStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sessionStartDate.Location = new System.Drawing.Point(12, 59);
+            this.sessionStartDate.Location = new System.Drawing.Point(6, 16);
             this.sessionStartDate.Name = "sessionStartDate";
-            this.sessionStartDate.Size = new System.Drawing.Size(330, 13);
+            this.sessionStartDate.Size = new System.Drawing.Size(318, 18);
             this.sessionStartDate.TabIndex = 1;
             this.sessionStartDate.Text = "Session Active Since: --";
             this.sessionStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // richTextBox1
+            // activeSession
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 177);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(330, 96);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.activeSession.Controls.Add(this.sessionStartDate);
+            this.activeSession.Controls.Add(this.keyStrokeCount);
+            this.activeSession.Location = new System.Drawing.Point(12, 12);
+            this.activeSession.Name = "activeSession";
+            this.activeSession.Size = new System.Drawing.Size(330, 82);
+            this.activeSession.TabIndex = 3;
+            this.activeSession.TabStop = false;
+            this.activeSession.Text = "Active Session";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 285);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.sessionStartDate);
-            this.Controls.Add(this.keyStrokeCount);
+            this.Controls.Add(this.activeSession);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Main";
@@ -135,6 +137,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.notifyIconContextMenu.ResumeLayout(false);
+            this.activeSession.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -149,7 +152,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label sessionStartDate;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.GroupBox activeSession;
     }
 }
 
