@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
 namespace Twainsoft.KeyCatcher.GUI.Session
@@ -6,6 +7,8 @@ namespace Twainsoft.KeyCatcher.GUI.Session
     public partial class SessionData : Form
     {
         public ClosingReason ClosingReason { get; private set; }
+
+        private int MaxSessionNameLength { get; set; }
 
         public string SessionName
         {
@@ -15,6 +18,10 @@ namespace Twainsoft.KeyCatcher.GUI.Session
         private SessionData()
         {
             InitializeComponent();
+
+            MaxSessionNameLength = 40;
+
+            charactersLeft.Text = string.Format(charactersLeft.Text, MaxSessionNameLength);
         }
 
         public SessionData(string name, bool exitApplication, KeyboardSession keyboardSession)
@@ -46,6 +53,16 @@ namespace Twainsoft.KeyCatcher.GUI.Session
             ClosingReason = ClosingReason.Continue;
 
             Close();
+        }
+
+        private void sessionName_TextChanged(object sender, System.EventArgs e)
+        {
+            var charsLeft = MaxSessionNameLength - sessionName.Text.Length;
+
+            charactersLeft.Text = string.Format("{0} Chars left", charsLeft);
+            charactersLeft.ForeColor = charsLeft < 0 ? Color.DarkRed : Color.Black;
+
+            buttonSave.Enabled = charsLeft >= 0;
         }
     }
 }
