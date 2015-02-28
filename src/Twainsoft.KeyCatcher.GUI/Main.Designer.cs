@@ -38,9 +38,13 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keyStrokeCount = new System.Windows.Forms.Label();
             this.sessionStartDate = new System.Windows.Forms.Label();
-            this.activeSession = new System.Windows.Forms.GroupBox();
+            this.activeSessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.overallSessionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.sessionsRecorded = new System.Windows.Forms.Label();
+            this.overallKeysCatched = new System.Windows.Forms.Label();
             this.notifyIconContextMenu.SuspendLayout();
-            this.activeSession.SuspendLayout();
+            this.activeSessionGroupBox.SuspendLayout();
+            this.overallSessionsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -92,40 +96,75 @@
             // 
             // keyStrokeCount
             // 
-            this.keyStrokeCount.Location = new System.Drawing.Point(6, 46);
+            this.keyStrokeCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.keyStrokeCount.AutoSize = true;
+            this.keyStrokeCount.Location = new System.Drawing.Point(6, 48);
             this.keyStrokeCount.Name = "keyStrokeCount";
-            this.keyStrokeCount.Size = new System.Drawing.Size(318, 19);
+            this.keyStrokeCount.Size = new System.Drawing.Size(113, 13);
             this.keyStrokeCount.TabIndex = 0;
             this.keyStrokeCount.Text = "Current Key Strokes: --";
             this.keyStrokeCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sessionStartDate
             // 
-            this.sessionStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sessionStartDate.Location = new System.Drawing.Point(6, 16);
+            this.sessionStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sessionStartDate.AutoSize = true;
+            this.sessionStartDate.Location = new System.Drawing.Point(6, 22);
             this.sessionStartDate.Name = "sessionStartDate";
-            this.sessionStartDate.Size = new System.Drawing.Size(318, 18);
+            this.sessionStartDate.Size = new System.Drawing.Size(119, 13);
             this.sessionStartDate.TabIndex = 1;
             this.sessionStartDate.Text = "Session Active Since: --";
             this.sessionStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // activeSession
+            // activeSessionGroupBox
             // 
-            this.activeSession.Controls.Add(this.sessionStartDate);
-            this.activeSession.Controls.Add(this.keyStrokeCount);
-            this.activeSession.Location = new System.Drawing.Point(12, 12);
-            this.activeSession.Name = "activeSession";
-            this.activeSession.Size = new System.Drawing.Size(330, 82);
-            this.activeSession.TabIndex = 3;
-            this.activeSession.TabStop = false;
-            this.activeSession.Text = "Active Session";
+            this.activeSessionGroupBox.Controls.Add(this.sessionStartDate);
+            this.activeSessionGroupBox.Controls.Add(this.keyStrokeCount);
+            this.activeSessionGroupBox.Location = new System.Drawing.Point(12, 88);
+            this.activeSessionGroupBox.Name = "activeSessionGroupBox";
+            this.activeSessionGroupBox.Size = new System.Drawing.Size(330, 75);
+            this.activeSessionGroupBox.TabIndex = 3;
+            this.activeSessionGroupBox.TabStop = false;
+            this.activeSessionGroupBox.Text = "Active Session";
+            // 
+            // overallSessionsGroupBox
+            // 
+            this.overallSessionsGroupBox.Controls.Add(this.overallKeysCatched);
+            this.overallSessionsGroupBox.Controls.Add(this.sessionsRecorded);
+            this.overallSessionsGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.overallSessionsGroupBox.Name = "overallSessionsGroupBox";
+            this.overallSessionsGroupBox.Size = new System.Drawing.Size(330, 70);
+            this.overallSessionsGroupBox.TabIndex = 4;
+            this.overallSessionsGroupBox.TabStop = false;
+            this.overallSessionsGroupBox.Text = "KeyCatcher Statistics";
+            // 
+            // sessionsRecorded
+            // 
+            this.sessionsRecorded.AutoSize = true;
+            this.sessionsRecorded.Location = new System.Drawing.Point(6, 22);
+            this.sessionsRecorded.Name = "sessionsRecorded";
+            this.sessionsRecorded.Size = new System.Drawing.Size(106, 13);
+            this.sessionsRecorded.TabIndex = 0;
+            this.sessionsRecorded.Text = "Sessions recorded: --";
+            // 
+            // overallKeysCatched
+            // 
+            this.overallKeysCatched.AutoSize = true;
+            this.overallKeysCatched.Location = new System.Drawing.Point(6, 48);
+            this.overallKeysCatched.Name = "overallKeysCatched";
+            this.overallKeysCatched.Size = new System.Drawing.Size(119, 13);
+            this.overallKeysCatched.TabIndex = 1;
+            this.overallKeysCatched.Text = "Overall keys catched: --";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 285);
-            this.Controls.Add(this.activeSession);
+            this.Controls.Add(this.overallSessionsGroupBox);
+            this.Controls.Add(this.activeSessionGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Main";
@@ -137,7 +176,10 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.notifyIconContextMenu.ResumeLayout(false);
-            this.activeSession.ResumeLayout(false);
+            this.activeSessionGroupBox.ResumeLayout(false);
+            this.activeSessionGroupBox.PerformLayout();
+            this.overallSessionsGroupBox.ResumeLayout(false);
+            this.overallSessionsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -152,7 +194,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label sessionStartDate;
-        private System.Windows.Forms.GroupBox activeSession;
+        private System.Windows.Forms.GroupBox activeSessionGroupBox;
+        private System.Windows.Forms.GroupBox overallSessionsGroupBox;
+        private System.Windows.Forms.Label overallKeysCatched;
+        private System.Windows.Forms.Label sessionsRecorded;
     }
 }
 

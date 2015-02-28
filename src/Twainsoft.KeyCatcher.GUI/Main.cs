@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.Events;
+using Twainsoft.KeyCatcher.Core.Model.Repositories;
 using Twainsoft.KeyCatcher.GUI.Properties;
 using Twainsoft.KeyCatcher.GUI.Session;
 
@@ -12,11 +13,14 @@ namespace Twainsoft.KeyCatcher.GUI
     {
         private KeyboardCatcher KeyboardCatcher { get; set; }
 
-        public Main(KeyboardCatcher keyboardCatcher)
+        private IKeyboardSessions KeyboardSessions { get; set; }
+
+        public Main(KeyboardCatcher keyboardCatcher, IKeyboardSessions keyboardSessions)
         {
             InitializeComponent();
 
             KeyboardCatcher = keyboardCatcher;
+            KeyboardSessions = keyboardSessions;
 
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
@@ -25,6 +29,13 @@ namespace Twainsoft.KeyCatcher.GUI
 
             // Catch all key strokes (KeyDown + KeyUp).
             KeyboardCatcher.KeyStroked += KeyboardCatcherOnKeyStroked;
+
+            LoadStatistics();
+        }
+
+        private void LoadStatistics()
+        {
+            
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
