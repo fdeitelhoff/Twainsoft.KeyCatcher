@@ -39,5 +39,41 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
                 saveCommand.Connection.Close();
             }
         }
+
+        public int Count()
+        {
+            const string sql = "SELECT count(*) FROM \"Sessions\";";
+            var result = 0;
+
+            using (var saveCommand = new FbCommand(sql,
+                new FbConnection(Persistence.ConnectionString)))
+            {
+                saveCommand.Connection.Open();
+
+                result = (int) saveCommand.ExecuteScalar();
+
+                saveCommand.Connection.Close();
+            }
+
+            return result;
+        }
+
+        public long CatchedKeyCount()
+        {
+            const string sql = "SELECT sum(\"KeyCount\") FROM \"Sessions\";";
+            var result = 0L;
+
+            using (var saveCommand = new FbCommand(sql,
+                new FbConnection(Persistence.ConnectionString)))
+            {
+                saveCommand.Connection.Open();
+
+                result = (long)saveCommand.ExecuteScalar();
+
+                saveCommand.Connection.Close();
+            }
+
+            return result;
+        }
     }
 }

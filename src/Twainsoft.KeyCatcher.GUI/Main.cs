@@ -35,7 +35,11 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void LoadStatistics()
         {
-            
+            var sessionCount = KeyboardSessions.Count();
+            var catchedKeys = KeyboardSessions.CatchedKeyCount();
+
+            sessionsRecorded.Text = string.Format("Sessions recorded: {0}", sessionCount);
+            overallKeysCatched.Text = string.Format("Overall keys caught: {0}", catchedKeys);
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
@@ -129,6 +133,8 @@ namespace Twainsoft.KeyCatcher.GUI
             {
                 case SessionStatus.Saved:
                         ClearSessionInfo();
+
+                        LoadStatistics();
 
                         ShowBalloonTip("Session saved", string.Format(
                             "The session '{0}' with {1} keystrokes was stopped and saved. The keyboard input will no longer be caught!",

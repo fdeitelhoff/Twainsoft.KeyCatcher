@@ -40,8 +40,8 @@
             this.sessionStartDate = new System.Windows.Forms.Label();
             this.activeSessionGroupBox = new System.Windows.Forms.GroupBox();
             this.overallSessionsGroupBox = new System.Windows.Forms.GroupBox();
-            this.sessionsRecorded = new System.Windows.Forms.Label();
             this.overallKeysCatched = new System.Windows.Forms.Label();
+            this.sessionsRecorded = new System.Windows.Forms.Label();
             this.notifyIconContextMenu.SuspendLayout();
             this.activeSessionGroupBox.SuspendLayout();
             this.overallSessionsGroupBox.SuspendLayout();
@@ -140,6 +140,15 @@
             this.overallSessionsGroupBox.TabStop = false;
             this.overallSessionsGroupBox.Text = "KeyCatcher Statistics";
             // 
+            // overallKeysCatched
+            // 
+            this.overallKeysCatched.AutoSize = true;
+            this.overallKeysCatched.Location = new System.Drawing.Point(6, 48);
+            this.overallKeysCatched.Name = "overallKeysCatched";
+            this.overallKeysCatched.Size = new System.Drawing.Size(113, 13);
+            this.overallKeysCatched.TabIndex = 1;
+            this.overallKeysCatched.Text = "Overall keys caught: --";
+            // 
             // sessionsRecorded
             // 
             this.sessionsRecorded.AutoSize = true;
@@ -148,15 +157,6 @@
             this.sessionsRecorded.Size = new System.Drawing.Size(106, 13);
             this.sessionsRecorded.TabIndex = 0;
             this.sessionsRecorded.Text = "Sessions recorded: --";
-            // 
-            // overallKeysCatched
-            // 
-            this.overallKeysCatched.AutoSize = true;
-            this.overallKeysCatched.Location = new System.Drawing.Point(6, 48);
-            this.overallKeysCatched.Name = "overallKeysCatched";
-            this.overallKeysCatched.Size = new System.Drawing.Size(119, 13);
-            this.overallKeysCatched.TabIndex = 1;
-            this.overallKeysCatched.Text = "Overall keys catched: --";
             // 
             // Main
             // 
