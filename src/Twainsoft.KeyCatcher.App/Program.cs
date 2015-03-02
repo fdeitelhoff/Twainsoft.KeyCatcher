@@ -14,6 +14,7 @@ namespace Twainsoft.KeyCatcher.App
         [STAThread]
         static void Main()
         {
+            // TODO: Maybe decouple this into an NinjectModule?
             // Initialize the DI-Container.
             var kernel = new StandardKernel();
             kernel.Bind<Main>().ToSelf();                                           // TODO: Maybe bind to an interface?! Not sure because of a win form class.
