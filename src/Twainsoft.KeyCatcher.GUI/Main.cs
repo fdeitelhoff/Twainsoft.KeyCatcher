@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Ninject.Extensions.Logging;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.Events;
 using Twainsoft.KeyCatcher.Core.Model.Repositories;
@@ -11,14 +12,17 @@ namespace Twainsoft.KeyCatcher.GUI
 {
     public partial class Main : Form
     {
+        private ILogger Logger { get; set; }
+
         private KeyboardCatcher KeyboardCatcher { get; set; }
 
         private IKeyboardSessions KeyboardSessions { get; set; }
 
-        public Main(KeyboardCatcher keyboardCatcher, IKeyboardSessions keyboardSessions)
+        public Main(ILogger logger, KeyboardCatcher keyboardCatcher, IKeyboardSessions keyboardSessions)
         {
             InitializeComponent();
 
+            Logger = logger;
             KeyboardCatcher = keyboardCatcher;
             KeyboardSessions = keyboardSessions;
 
@@ -164,6 +168,8 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void ShowBalloonTip(string title, string message, ToolTipIcon icon)
         {
+            Logger.Info(string.Format("{0} - {1}", title, message));
+
             notifyIcon.ShowBalloonTip(500, title, message, icon);
         }
 
