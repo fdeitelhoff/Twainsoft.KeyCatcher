@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace Twainsoft.KeyCatcher.GUI.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -94,6 +97,15 @@ namespace Twainsoft.KeyCatcher.GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Key Strokes: {0}.
+        /// </summary>
+        internal static string MainForm_CurrentKeyStrokes {
+            get {
+                return ResourceManager.GetString("MainForm_CurrentKeyStrokes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There&apos;s currently an active session. Would you like to stop it and start a new one?.
         /// </summary>
         internal static string MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Message {
@@ -108,6 +120,15 @@ namespace Twainsoft.KeyCatcher.GUI.Properties {
         internal static string MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Title {
             get {
                 return ResourceManager.GetString("MainForm_KeyboardCatcherOnSessionStarting_Active_Session_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Session Active Since: {0}.
+        /// </summary>
+        internal static string MainForm_SessionActiveSince {
+            get {
+                return ResourceManager.GetString("MainForm_SessionActiveSince", resourceCulture);
             }
         }
         

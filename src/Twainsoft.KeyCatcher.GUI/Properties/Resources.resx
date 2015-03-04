@@ -139,4 +139,10 @@
   <data name="Main_LabelKeyStrokeCount_Current_Key_Strokes" xml:space="preserve">
     <value>Current Key Strokes: --</value>
   </data>
+  <data name="MainForm_CurrentKeyStrokes" xml:space="preserve">
+    <value>Current Key Strokes: {0}</value>
+  </data>
+  <data name="MainForm_SessionActiveSince" xml:space="preserve">
+    <value>Session Active Since: {0}</value>
+  </data>
 </root>

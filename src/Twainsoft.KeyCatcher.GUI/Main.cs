@@ -40,10 +40,12 @@ namespace Twainsoft.KeyCatcher.GUI
         private void LoadStatistics()
         {
             var sessionCount = KeyboardSessions.Count();
-            var catchedKeys = KeyboardSessions.CatchedKeyCount();
+            var caughtKeys = KeyboardSessions.CatchedKeyCount();
 
             sessionsRecorded.Text = string.Format("Sessions recorded: {0}", sessionCount);
-            overallKeysCatched.Text = string.Format("Overall keys caught: {0}", catchedKeys);
+            overallKeysCatched.Text = string.Format("Overall keys caught: {0}", caughtKeys);
+
+            Logger.Info(string.Format("Sessions recorded: {0} - Overall keys caught: {1}", sessionCount, caughtKeys));
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
@@ -221,8 +223,8 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void UpdateSessionInfo(DateTime sessionStart, long keyStrokes)
         {
-            sessionStartDate.Text = string.Format("Session Active Since: {0}", sessionStart);
-            keyStrokeCount.Text = string.Format("Current Key Strokes: {0}", keyStrokes);
+            sessionStartDate.Text = string.Format(Resources.MainForm_SessionActiveSince, sessionStart);
+            keyStrokeCount.Text = string.Format(Resources.MainForm_CurrentKeyStrokes, keyStrokes);
         }
 
         private void ClearSessionInfo()
