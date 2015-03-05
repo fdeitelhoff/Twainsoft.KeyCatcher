@@ -8,6 +8,6 @@ namespace Twainsoft.KeyCatcher.Core.Model.Repositories
 
         int Count();
 
-        long CatchedKeyCount();
+        long CaughtKeyCount();
     }
 }

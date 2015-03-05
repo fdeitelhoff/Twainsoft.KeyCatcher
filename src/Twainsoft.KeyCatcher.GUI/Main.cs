@@ -40,7 +40,7 @@ namespace Twainsoft.KeyCatcher.GUI
         private void LoadStatistics()
         {
             var sessionCount = KeyboardSessions.Count();
-            var caughtKeys = KeyboardSessions.CatchedKeyCount();
+            var caughtKeys = KeyboardSessions.CaughtKeyCount();
 
             sessionsRecorded.Text = string.Format("Sessions recorded: {0}", sessionCount);
             overallKeysCatched.Text = string.Format("Overall keys caught: {0}", caughtKeys);

@@ -58,7 +58,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             return result;
         }
 
-        public long CatchedKeyCount()
+        public long CaughtKeyCount()
         {
             const string sql = "SELECT sum(\"KeyCount\") FROM \"Sessions\";";
             var result = 0L;
