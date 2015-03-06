@@ -42,6 +42,10 @@
             this.overallSessionsGroupBox = new System.Windows.Forms.GroupBox();
             this.overallKeysCatched = new System.Windows.Forms.Label();
             this.sessionsRecorded = new System.Windows.Forms.Label();
+            this.showSessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.saveSession = new System.Windows.Forms.Button();
+            this.continueSession = new System.Windows.Forms.Button();
+            this.discardSession = new System.Windows.Forms.Button();
             this.notifyIconContextMenu.SuspendLayout();
             this.activeSessionGroupBox.SuspendLayout();
             this.overallSessionsGroupBox.SuspendLayout();
@@ -120,11 +124,14 @@
             // 
             // activeSessionGroupBox
             // 
+            this.activeSessionGroupBox.Controls.Add(this.discardSession);
+            this.activeSessionGroupBox.Controls.Add(this.continueSession);
             this.activeSessionGroupBox.Controls.Add(this.sessionStartDate);
             this.activeSessionGroupBox.Controls.Add(this.keyStrokeCount);
+            this.activeSessionGroupBox.Controls.Add(this.saveSession);
             this.activeSessionGroupBox.Location = new System.Drawing.Point(12, 88);
             this.activeSessionGroupBox.Name = "activeSessionGroupBox";
-            this.activeSessionGroupBox.Size = new System.Drawing.Size(330, 75);
+            this.activeSessionGroupBox.Size = new System.Drawing.Size(330, 104);
             this.activeSessionGroupBox.TabIndex = 3;
             this.activeSessionGroupBox.TabStop = false;
             this.activeSessionGroupBox.Text = "Active Session";
@@ -158,11 +165,51 @@
             this.sessionsRecorded.TabIndex = 0;
             this.sessionsRecorded.Text = "Sessions recorded: --";
             // 
+            // showSessionGroupBox
+            // 
+            this.showSessionGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.showSessionGroupBox.Location = new System.Drawing.Point(12, 198);
+            this.showSessionGroupBox.Name = "showSessionGroupBox";
+            this.showSessionGroupBox.Size = new System.Drawing.Size(330, 75);
+            this.showSessionGroupBox.TabIndex = 5;
+            this.showSessionGroupBox.TabStop = false;
+            this.showSessionGroupBox.Text = "Session Infos";
+            // 
+            // saveSession
+            // 
+            this.saveSession.Location = new System.Drawing.Point(249, 17);
+            this.saveSession.Name = "saveSession";
+            this.saveSession.Size = new System.Drawing.Size(75, 23);
+            this.saveSession.TabIndex = 6;
+            this.saveSession.Text = "&Save";
+            this.saveSession.UseVisualStyleBackColor = true;
+            // 
+            // continueSession
+            // 
+            this.continueSession.Location = new System.Drawing.Point(249, 75);
+            this.continueSession.Name = "continueSession";
+            this.continueSession.Size = new System.Drawing.Size(75, 23);
+            this.continueSession.TabIndex = 7;
+            this.continueSession.Text = "&Continue";
+            this.continueSession.UseVisualStyleBackColor = true;
+            // 
+            // discardSession
+            // 
+            this.discardSession.Location = new System.Drawing.Point(249, 46);
+            this.discardSession.Name = "discardSession";
+            this.discardSession.Size = new System.Drawing.Size(75, 23);
+            this.discardSession.TabIndex = 8;
+            this.discardSession.Text = "&Discard";
+            this.discardSession.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 285);
+            this.Controls.Add(this.showSessionGroupBox);
             this.Controls.Add(this.overallSessionsGroupBox);
             this.Controls.Add(this.activeSessionGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -198,6 +245,10 @@
         private System.Windows.Forms.GroupBox overallSessionsGroupBox;
         private System.Windows.Forms.Label overallKeysCatched;
         private System.Windows.Forms.Label sessionsRecorded;
+        private System.Windows.Forms.GroupBox showSessionGroupBox;
+        private System.Windows.Forms.Button saveSession;
+        private System.Windows.Forms.Button continueSession;
+        private System.Windows.Forms.Button discardSession;
     }
 }
 
