@@ -45,7 +45,7 @@ namespace Twainsoft.KeyCatcher.GUI
             sessionsRecorded.Text = string.Format("Sessions recorded: {0}", sessionCount);
             overallKeysCatched.Text = string.Format("Overall keys caught: {0}", caughtKeys);
 
-            Logger.Info(string.Format("Sessions recorded: {0} - Overall keys caught: {1}", sessionCount, caughtKeys));
+            Logger.Info("Sessions recorded: {0} - Overall keys caught: {1}", sessionCount, caughtKeys);
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
@@ -170,7 +170,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void ShowBalloonTip(string title, string message, ToolTipIcon icon)
         {
-            Logger.Info(string.Format("{0} - {1}", title, message));
+            Logger.Info("{0} - {1}", title, message);
 
             notifyIcon.ShowBalloonTip(500, title, message, icon);
         }
