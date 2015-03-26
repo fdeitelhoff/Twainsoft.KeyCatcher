@@ -121,22 +121,26 @@
             // 
             // activeSessionGroupBox
             // 
+            this.activeSessionGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.activeSessionGroupBox.Controls.Add(this.sessionStartDate);
             this.activeSessionGroupBox.Controls.Add(this.keyStrokeCount);
             this.activeSessionGroupBox.Location = new System.Drawing.Point(12, 88);
             this.activeSessionGroupBox.Name = "activeSessionGroupBox";
-            this.activeSessionGroupBox.Size = new System.Drawing.Size(330, 104);
+            this.activeSessionGroupBox.Size = new System.Drawing.Size(270, 104);
             this.activeSessionGroupBox.TabIndex = 3;
             this.activeSessionGroupBox.TabStop = false;
             this.activeSessionGroupBox.Text = "Active Session";
             // 
             // overallSessionsGroupBox
             // 
+            this.overallSessionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.overallSessionsGroupBox.Controls.Add(this.overallKeysCatched);
             this.overallSessionsGroupBox.Controls.Add(this.sessionsRecorded);
             this.overallSessionsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.overallSessionsGroupBox.Name = "overallSessionsGroupBox";
-            this.overallSessionsGroupBox.Size = new System.Drawing.Size(330, 70);
+            this.overallSessionsGroupBox.Size = new System.Drawing.Size(270, 70);
             this.overallSessionsGroupBox.TabIndex = 4;
             this.overallSessionsGroupBox.TabStop = false;
             this.overallSessionsGroupBox.Text = "KeyCatcher Statistics";
