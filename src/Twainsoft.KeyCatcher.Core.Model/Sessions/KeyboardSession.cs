@@ -40,5 +40,10 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
         {
             return string.Join("|", PressedKeys.Values);
         }
+
+        public string GetDateTimes()
+        {
+            return string.Join("|", PressedKeys.Keys);
+        }
     }
 }
