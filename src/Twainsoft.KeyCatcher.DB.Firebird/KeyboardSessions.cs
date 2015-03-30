@@ -68,7 +68,12 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             {
                 saveCommand.Connection.Open();
 
-                result = (long)saveCommand.ExecuteScalar();
+                // If there are no sessions, the command returns an DBNull value.
+                var value = saveCommand.ExecuteScalar();
+                if (!Convert.IsDBNull(value))
+                {
+                    result = Convert.ToInt64(value);
+                }
 
                 saveCommand.Connection.Close();
             }
