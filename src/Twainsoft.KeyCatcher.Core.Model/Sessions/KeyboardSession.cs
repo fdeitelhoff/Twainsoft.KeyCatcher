@@ -13,21 +13,24 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
         public InputLanguage InputLanguage { get; private set; }
 
         public long KeyPressCount { get; private set; }
-        private Dictionary<DateTime, string> PressedKeys { get; set; }
+        private List<string> PressedKeys { get; set; }
+        private List<DateTime> PressedKeyDateTimes { get; set; }
 
         public KeyboardSession()
         {
             Start = DateTime.Now;
             InputLanguage = InputLanguage.CurrentInputLanguage;
 
-            PressedKeys = new Dictionary<DateTime, string>();
+            PressedKeys = new List<string>();
+            PressedKeyDateTimes = new List<DateTime>();
         }
 
         public void KeyPress(string keyChar)
         {
             KeyPressCount++;
 
-            PressedKeys.Add(DateTime.Now, keyChar);
+            PressedKeys.Add(keyChar);
+            PressedKeyDateTimes.Add(DateTime.Now);
         }
 
         public void Stop(string sessionName)
@@ -38,12 +41,12 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 
         public string GetKeys()
         {
-            return string.Join("|", PressedKeys.Values);
+            return string.Join("|", PressedKeys);
         }
 
         public string GetDateTimes()
         {
-            return string.Join("|", PressedKeys.Keys);
+            return string.Join("|", PressedKeyDateTimes);
         }
     }
 }
