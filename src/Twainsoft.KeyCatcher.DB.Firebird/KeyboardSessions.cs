@@ -17,8 +17,8 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 
         public void Save(KeyboardSession keyboardSession)
         {
-            const string sql = "INSERT INTO \"Sessions\" (\"SID\", \"Name\", \"StartDate\", \"EndDate\", \"InputCulture\", \"InputLanguage\", \"KeyCount\", \"Keys\") " +
-                               "VALUES (@SID, @Name, @StartDate, @EndDate, @InputCulture, @InputLanguage, @KeyCount, @Keys);";
+            const string sql = "INSERT INTO \"Sessions\" (\"SID\", \"Name\", \"StartDate\", \"EndDate\", \"InputCulture\", \"InputLanguage\", \"KeyCount\", \"Keys\", \"KeyDateTimes\") " +
+                               "VALUES (@SID, @Name, @StartDate, @EndDate, @InputCulture, @InputLanguage, @KeyCount, @Keys, @KeyDateTimes);";
 
             using (var saveCommand = new FbCommand(sql, 
                 new FbConnection(Persistence.ConnectionString)))
@@ -31,6 +31,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
                 saveCommand.Parameters.Add("@InputLanguage", keyboardSession.InputLanguage.LayoutName);
                 saveCommand.Parameters.Add("@KeyCount", keyboardSession.KeyPressCount);
                 saveCommand.Parameters.Add("@Keys", keyboardSession.GetKeys());
+                saveCommand.Parameters.Add("@KeyDateTimes", keyboardSession.GetDateTimes());
 
                 saveCommand.Connection.Open();
 

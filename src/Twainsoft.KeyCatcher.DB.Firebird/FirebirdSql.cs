@@ -26,7 +26,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             {
                 ServerType = FbServerType.Embedded,
                 UserID = "Twainsoft.KeyCatcher",
-                Password = "Ma&do;va85.",
+                Password = "test",
                 Dialect = 3,
                 Pooling = true,
                 Role = "Admin",
