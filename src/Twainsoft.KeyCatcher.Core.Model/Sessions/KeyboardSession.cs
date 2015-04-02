@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Twainsoft.KeyCatcher.Core.Model.Sessions
@@ -46,7 +47,9 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 
         public string GetDateTimes()
         {
-            return string.Join("|", PressedKeyDateTimes);
+            var formatted = PressedKeyDateTimes.Select(item => item.Ticks);
+
+            return string.Join("|", formatted);
         }
     }
 }
