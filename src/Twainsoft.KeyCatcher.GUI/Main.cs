@@ -5,6 +5,7 @@ using Ninject.Extensions.Logging;
 using Twainsoft.KeyCatcher.Core.Keyboard;
 using Twainsoft.KeyCatcher.Core.Keyboard.Events;
 using Twainsoft.KeyCatcher.Core.Model.Repositories;
+using Twainsoft.KeyCatcher.GUI.Keyboard;
 using Twainsoft.KeyCatcher.GUI.Properties;
 using Twainsoft.KeyCatcher.GUI.Session;
 
@@ -231,6 +232,16 @@ namespace Twainsoft.KeyCatcher.GUI
         {
             sessionStartDate.Text = Resources.Main_LabelStartDate_Session_Active_Since;
             keyStrokeCount.Text = Resources.Main_LabelKeyStrokeCount_Current_Key_Strokes;
+        }
+
+        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SessionsOverview().Show(this);
+        }
+
+        private void virtualKeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new VirtualKeyboard().Show(this);
         }
     }
 }

@@ -42,10 +42,15 @@
             this.overallSessionsGroupBox = new System.Windows.Forms.GroupBox();
             this.overallKeysCatched = new System.Windows.Forms.Label();
             this.sessionsRecorded = new System.Windows.Forms.Label();
-            this.showSessionGroupBox = new System.Windows.Forms.GroupBox();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.sessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.virtualKeyboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIconContextMenu.SuspendLayout();
             this.activeSessionGroupBox.SuspendLayout();
             this.overallSessionsGroupBox.SuspendLayout();
+            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -125,9 +130,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.activeSessionGroupBox.Controls.Add(this.sessionStartDate);
             this.activeSessionGroupBox.Controls.Add(this.keyStrokeCount);
-            this.activeSessionGroupBox.Location = new System.Drawing.Point(12, 88);
+            this.activeSessionGroupBox.Location = new System.Drawing.Point(12, 103);
             this.activeSessionGroupBox.Name = "activeSessionGroupBox";
-            this.activeSessionGroupBox.Size = new System.Drawing.Size(270, 104);
+            this.activeSessionGroupBox.Size = new System.Drawing.Size(270, 74);
             this.activeSessionGroupBox.TabIndex = 3;
             this.activeSessionGroupBox.TabStop = false;
             this.activeSessionGroupBox.Text = "Active Session";
@@ -138,7 +143,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.overallSessionsGroupBox.Controls.Add(this.overallKeysCatched);
             this.overallSessionsGroupBox.Controls.Add(this.sessionsRecorded);
-            this.overallSessionsGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.overallSessionsGroupBox.Location = new System.Drawing.Point(12, 27);
             this.overallSessionsGroupBox.Name = "overallSessionsGroupBox";
             this.overallSessionsGroupBox.Size = new System.Drawing.Size(270, 70);
             this.overallSessionsGroupBox.TabIndex = 4;
@@ -163,27 +168,56 @@
             this.sessionsRecorded.TabIndex = 0;
             this.sessionsRecorded.Text = "Sessions recorded: --";
             // 
-            // showSessionGroupBox
+            // mainMenu
             // 
-            this.showSessionGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.showSessionGroupBox.Location = new System.Drawing.Point(12, 198);
-            this.showSessionGroupBox.Name = "showSessionGroupBox";
-            this.showSessionGroupBox.Size = new System.Drawing.Size(270, 75);
-            this.showSessionGroupBox.TabIndex = 5;
-            this.showSessionGroupBox.TabStop = false;
-            this.showSessionGroupBox.Text = "Session Infos";
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sessionsToolStripMenuItem,
+            this.keyboardToolStripMenuItem});
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(294, 24);
+            this.mainMenu.TabIndex = 5;
+            // 
+            // sessionsToolStripMenuItem
+            // 
+            this.sessionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showAllToolStripMenuItem});
+            this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.sessionsToolStripMenuItem.Text = "&Sessions";
+            // 
+            // showAllToolStripMenuItem
+            // 
+            this.showAllToolStripMenuItem.Name = "showAllToolStripMenuItem";
+            this.showAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showAllToolStripMenuItem.Text = "&Overview";
+            this.showAllToolStripMenuItem.Click += new System.EventHandler(this.showAllToolStripMenuItem_Click);
+            // 
+            // keyboardToolStripMenuItem
+            // 
+            this.keyboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.virtualKeyboardToolStripMenuItem});
+            this.keyboardToolStripMenuItem.Name = "keyboardToolStripMenuItem";
+            this.keyboardToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.keyboardToolStripMenuItem.Text = "&Keyboard";
+            // 
+            // virtualKeyboardToolStripMenuItem
+            // 
+            this.virtualKeyboardToolStripMenuItem.Name = "virtualKeyboardToolStripMenuItem";
+            this.virtualKeyboardToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.virtualKeyboardToolStripMenuItem.Text = "&Virtual Keyboard";
+            this.virtualKeyboardToolStripMenuItem.Click += new System.EventHandler(this.virtualKeyboardToolStripMenuItem_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 285);
-            this.Controls.Add(this.showSessionGroupBox);
+            this.ClientSize = new System.Drawing.Size(294, 190);
+            this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.overallSessionsGroupBox);
             this.Controls.Add(this.activeSessionGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.mainMenu;
             this.MaximizeBox = false;
             this.Name = "Main";
             this.ShowInTaskbar = false;
@@ -198,7 +232,10 @@
             this.activeSessionGroupBox.PerformLayout();
             this.overallSessionsGroupBox.ResumeLayout(false);
             this.overallSessionsGroupBox.PerformLayout();
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -216,7 +253,11 @@
         private System.Windows.Forms.GroupBox overallSessionsGroupBox;
         private System.Windows.Forms.Label overallKeysCatched;
         private System.Windows.Forms.Label sessionsRecorded;
-        private System.Windows.Forms.GroupBox showSessionGroupBox;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.ToolStripMenuItem sessionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keyboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem virtualKeyboardToolStripMenuItem;
     }
 }
 

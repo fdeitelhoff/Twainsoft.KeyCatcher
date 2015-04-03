@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Keyboard\VirtualKeyboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keyboard\VirtualKeyboard.Designer.cs">
+      <DependentUpon>VirtualKeyboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Session\ClosingReason.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -74,6 +80,15 @@
     <Compile Include="Session\SessionData.Designer.cs">
       <DependentUpon>SessionData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Session\SessionsOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Session\SessionsOverview.Designer.cs">
+      <DependentUpon>SessionsOverview.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Keyboard\VirtualKeyboard.resx">
+      <DependentUpon>VirtualKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="Session\SessionData.resx">
       <DependentUpon>SessionData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Session\SessionsOverview.resx">
+      <DependentUpon>SessionsOverview.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -117,6 +135,7 @@
       <Name>Twainsoft.KeyCatcher.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
