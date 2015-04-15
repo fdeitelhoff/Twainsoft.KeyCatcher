@@ -19,13 +19,16 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private IKeyboardSessions KeyboardSessions { get; set; }
 
-        public Main(ILogger logger, KeyboardCatcher keyboardCatcher, IKeyboardSessions keyboardSessions)
+        private SessionsOverview SessionsOverview { get; set; }
+
+        public Main(ILogger logger, KeyboardCatcher keyboardCatcher, IKeyboardSessions keyboardSessions, SessionsOverview sessionsOverview)
         {
             InitializeComponent();
 
             Logger = logger;
             KeyboardCatcher = keyboardCatcher;
             KeyboardSessions = keyboardSessions;
+            SessionsOverview = sessionsOverview;
 
             KeyboardCatcher.SessionStarting += KeyboardCatcherOnSessionStarting;
             KeyboardCatcher.SessionStarted += KeyboardCatcherOnSessionStarted;
@@ -236,7 +239,7 @@ namespace Twainsoft.KeyCatcher.GUI
 
         private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new SessionsOverview().Show(this);
+            SessionsOverview.Show(this);
         }
 
         private void virtualKeyboardToolStripMenuItem_Click(object sender, EventArgs e)

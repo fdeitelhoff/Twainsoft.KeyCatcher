@@ -6,6 +6,7 @@ using Twainsoft.KeyCatcher.Core.Model.Persistence;
 using Twainsoft.KeyCatcher.Core.Model.Repositories;
 using Twainsoft.KeyCatcher.DB.Firebird;
 using Twainsoft.KeyCatcher.GUI;
+using Twainsoft.KeyCatcher.GUI.Session;
 
 namespace Twainsoft.KeyCatcher.App
 {
@@ -18,6 +19,7 @@ namespace Twainsoft.KeyCatcher.App
             // Initialize the DI-Container.
             var kernel = new StandardKernel();
             kernel.Bind<Main>().ToSelf();                                           // TODO: Maybe bind to an interface?! Not sure because of a win form class.
+            kernel.Bind<SessionsOverview>().ToSelf();                               // TODO: And again: Bind to an interface?
             kernel.Bind<IPersistence>().To<FirebirdSql>().InSingletonScope();
             kernel.Bind<KeyboardCatcher>().ToSelf();                                // TODO: Bind to an interface!
             kernel.Bind<IKeyboardSessions>().To<KeyboardSessions>();
