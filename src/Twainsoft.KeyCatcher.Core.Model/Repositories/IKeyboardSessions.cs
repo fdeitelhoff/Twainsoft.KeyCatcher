@@ -1,4 +1,5 @@
-﻿using Twainsoft.KeyCatcher.Core.Model.Sessions;
+﻿using System.Collections.Generic;
+using Twainsoft.KeyCatcher.Core.Model.Sessions;
 
 namespace Twainsoft.KeyCatcher.Core.Model.Repositories
 {
@@ -9,5 +10,7 @@ namespace Twainsoft.KeyCatcher.Core.Model.Repositories
         int Count();
 
         long CaughtKeyCount();
+
+        List<KeyboardSession> All();
     }
 }

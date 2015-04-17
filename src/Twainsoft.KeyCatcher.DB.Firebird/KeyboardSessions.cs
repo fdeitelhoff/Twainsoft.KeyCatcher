@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FirebirdSql.Data.FirebirdClient;
 using Twainsoft.KeyCatcher.Core.Model.Persistence;
 using Twainsoft.KeyCatcher.Core.Model.Repositories;
@@ -80,6 +81,11 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             }
 
             return result;
+        }
+
+        public List<KeyboardSession> All()
+        {
+            return new List<KeyboardSession>() { new KeyboardSession() };
         }
     }
 }

@@ -18,7 +18,9 @@ namespace Twainsoft.KeyCatcher.GUI.Session
 
         private void LoadSessions()
         {
-            
+            var sessions = KeyboardSessions.All();
+
+            keyboardSessions.DataSource = sessions;
         }
     }
 }
