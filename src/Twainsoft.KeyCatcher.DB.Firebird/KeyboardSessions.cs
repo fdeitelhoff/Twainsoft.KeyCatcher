@@ -45,7 +45,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
         public int Count()
         {
             const string sql = "SELECT count(*) FROM \"Sessions\";";
-            var result = 0;
+            int result;
 
             using (var saveCommand = new FbCommand(sql,
                 new FbConnection(Persistence.ConnectionString)))
@@ -62,15 +62,15 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 
         public long CaughtKeyCount()
         {
-            const string sql = "SELECT sum(\"KeyCount\") FROM \"Sessions\";";
+            const string @select = "SELECT sum(\"KeyCount\") FROM \"Sessions\";";
             var result = 0L;
 
-            using (var saveCommand = new FbCommand(sql,
+            using (var saveCommand = new FbCommand(@select,
                 new FbConnection(Persistence.ConnectionString)))
             {
                 saveCommand.Connection.Open();
 
-                // If there are no sessions, the command returns an DBNull value.
+                // If there are no sessions, the command returns a DBNull value.
                 var value = saveCommand.ExecuteScalar();
                 if (!Convert.IsDBNull(value))
                 {
@@ -85,6 +85,24 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 
         public List<KeyboardSession> All()
         {
+            const string @select = "SELECT \"SID\", \"Name\", \"StartDate\", \"EndDate\", \"InputCulture\", \"InputLanguage\", \"KeyCount\", \"Keys\", \"KeyDateTimes\" FROM " +
+                                   "\"Sessions\";";
+
+            using (var saveCommand = new FbCommand(select,
+                new FbConnection(Persistence.ConnectionString)))
+            {
+                saveCommand.Connection.Open();
+
+                // If there are no sessions, the command returns a DBNull value.
+                var reader = saveCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    var guid = reader.GetValue(0);
+                }
+
+                saveCommand.Connection.Close();
+            }
+
             return new List<KeyboardSession>() { new KeyboardSession() };
         }
     }
