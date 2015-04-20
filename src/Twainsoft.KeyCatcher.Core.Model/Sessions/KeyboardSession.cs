@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 {
     public class KeyboardSession
     {
+        public Guid Guid { get; private set; }
         public string Name { get; private set; }
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
@@ -24,6 +26,16 @@ namespace Twainsoft.KeyCatcher.Core.Model.Sessions
 
             PressedKeys = new List<string>();
             PressedKeyDateTimes = new List<DateTime>();
+        }
+
+        public KeyboardSession(Guid guid, string name, DateTime start, DateTime end, long keyPressCount)
+            : this()
+        {
+            Guid = guid;
+            Name = name;
+            Start = start;
+            End = end;
+            KeyPressCount = keyPressCount;
         }
 
         public void KeyPress(string keyChar)

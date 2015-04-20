@@ -24,7 +24,7 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
             using (var saveCommand = new FbCommand(sql, 
                 new FbConnection(Persistence.ConnectionString)))
             {
-                saveCommand.Parameters.Add("@SID", Guid.NewGuid());
+                saveCommand.Parameters.Add("@SID", Guid.NewGuid());                     // Could be saved with braces to simplify the parsing process.
                 saveCommand.Parameters.Add("@Name", keyboardSession.Name);
                 saveCommand.Parameters.Add("@StartDate", keyboardSession.Start);
                 saveCommand.Parameters.Add("@EndDate", keyboardSession.End);
@@ -85,8 +85,10 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
 
         public List<KeyboardSession> All()
         {
-            const string @select = "SELECT \"SID\", \"Name\", \"StartDate\", \"EndDate\", \"InputCulture\", \"InputLanguage\", \"KeyCount\", \"Keys\", \"KeyDateTimes\" FROM " +
-                                   "\"Sessions\";";
+            const string @select = "SELECT \"SID\", \"Name\", \"StartDate\", \"EndDate\", \"KeyCount\" FROM " +
+                                   "\"Sessions\" ORDER BY \"StartDate\";";
+
+            var keyboardSessions = new List<KeyboardSession>();
 
             using (var saveCommand = new FbCommand(select,
                 new FbConnection(Persistence.ConnectionString)))
@@ -97,13 +99,17 @@ namespace Twainsoft.KeyCatcher.DB.Firebird
                 var reader = saveCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    var guid = reader.GetValue(0);
+                    keyboardSessions.Add(new KeyboardSession(Guid.Parse(reader.GetValue(0).ToString()),
+                       reader.GetString(1),
+                       reader.GetDateTime(2),
+                       reader.GetDateTime(3),
+                       reader.GetInt64(4)));
                 }
 
                 saveCommand.Connection.Close();
             }
 
-            return new List<KeyboardSession>() { new KeyboardSession() };
+            return keyboardSessions;
         }
     }
 }
