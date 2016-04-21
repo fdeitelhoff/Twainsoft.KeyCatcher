@@ -59,7 +59,7 @@ namespace Twainsoft.KeyCatcher.GUI.Session
         {
             var charsLeft = MaxSessionNameLength - sessionName.Text.Length;
 
-            charactersLeft.Text = string.Format("{0} Chars left", charsLeft);
+            charactersLeft.Text = $"{charsLeft} Chars left";
             charactersLeft.ForeColor = charsLeft < 0 ? Color.DarkRed : Color.Black;
 
             buttonSave.Enabled = charsLeft >= 0;

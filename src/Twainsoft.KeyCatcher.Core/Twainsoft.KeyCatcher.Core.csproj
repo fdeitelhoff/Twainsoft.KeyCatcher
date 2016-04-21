@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Twainsoft.KeyCatcher.Core</RootNamespace>
     <AssemblyName>Twainsoft.KeyCatcher.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +52,7 @@
     <Compile Include="Keyboard\Events\SessionStartedEventArgs.cs" />
     <Compile Include="Keyboard\Events\SessionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win32\NativeMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Twainsoft.KeyCatcher.Core.Model\Twainsoft.KeyCatcher.Core.Model.csproj">
